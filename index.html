@@ -14,7 +14,7 @@
             --gold-dim: #8a7322;
             --parchment-light: #f4ecd8;
             --parchment-dark: #dfcfae;
-            --ink: #2b1f15; /* Vintage dark brown/black ink */
+            --ink: #2b1f15; 
             --text-muted: #9e9786;
         }
 
@@ -47,6 +47,38 @@
             padding-bottom: 10px;
             width: 100%;
             max-width: 400px;
+        }
+
+        /* Question Box Styles */
+        .intention-box {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .intention-box label {
+            color: var(--gold-dim);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .intention-box input {
+            background-color: rgba(74, 14, 23, 0.2);
+            border: 1px solid var(--gold-dim);
+            color: var(--parchment-light);
+            padding: 12px;
+            border-radius: 4px;
+            font-family: "Georgia", serif;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .intention-box input:focus {
+            border-color: var(--gold);
         }
 
         .controls {
@@ -133,7 +165,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 4px;
-            /* Creates the vintage double-border effect */
             border: 1px solid var(--ink);
             box-shadow: inset 0 0 0 3px transparent, inset 0 0 0 4px var(--ink);
         }
@@ -157,7 +188,6 @@
         .card-center-art {
             flex-grow: 1;
             width: 100%;
-            /* Faint celestial geometry for the center of the card */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='35' stroke='%232b1f15' stroke-width='0.5' fill='none' opacity='0.6'/%3E%3Ccircle cx='50' cy='50' r='25' stroke='%232b1f15' stroke-width='0.5' fill='none' stroke-dasharray='1,2' opacity='0.6'/%3E%3Cline x1='15' y1='50' x2='85' y2='50' stroke='%232b1f15' stroke-width='0.5' opacity='0.6'/%3E%3Cline x1='50' y1='15' x2='50' y2='85' stroke='%232b1f15' stroke-width='0.5' opacity='0.6'/%3E%3Ccircle cx='50' cy='50' r='10' stroke='%232b1f15' stroke-width='1' fill='none' opacity='0.6'/%3E%3C/svg%3E");
             background-size: contain;
             background-position: center;
@@ -232,12 +262,27 @@
             line-height: 1.6;
             color: var(--text-muted);
         }
+
+        .btn-synthesize {
+            width: 100%;
+            background-color: var(--burgundy);
+            color: var(--parchment-light);
+            padding: 15px;
+            font-size: 16px;
+            margin-top: 20px;
+            display: none; /* Hidden until cards are drawn */
+        }
     </style>
 </head>
 <body>
 
     <h1>Arcanum Oracle</h1>
     
+    <div class="intention-box">
+        <label for="questionInput">The Focus</label>
+        <input type="text" id="questionInput" placeholder="What seeks clarity?">
+    </div>
+
     <div class="controls">
         <button onclick="drawSpread('single')">Single Card</button>
         <button onclick="drawSpread('three')">3-Card Spread</button>
@@ -245,12 +290,21 @@
     </div>
 
     <div class="spread-container" id="spreadContainer">
-        </div>
+        <!-- Cards injected via JS -->
+    </div>
 
     <div class="reading-area" id="readingArea">
-        </div>
+        <!-- Text interpretations injected via JS -->
+    </div>
+    
+    <button class="btn-synthesize" id="btnSynthesize" onclick="generateAIReading()">Copy Spread for AI Synthesis</button>
 
     <script>
+        // Load the swoosh audio (requires a file named flip.mp3 in the same folder)
+        const flipAudio = new Audio('flip.mp3');
+        
+        let currentSpreadData = [];
+
         const deck = [
             { num: "0", name: "The Fool", upright: "New beginnings, innocence, spontaneity, a free spirit.", reversed: "Recklessness, risk-taking, holding back, naivety." },
             { num: "I", name: "The Magician", upright: "Manifestation, resourcefulness, power, inspired action.", reversed: "Manipulation, poor planning, untapped talents." },
@@ -273,8 +327,7 @@
             { num: "XVIII", name: "The Moon", upright: "Illusion, fear, anxiety, subconscious, intuition.", reversed: "Release of fear, repressed emotion, inner confusion." },
             { num: "XIX", name: "The Sun", upright: "Positivity, fun, warmth, success, vitality.", reversed: "Inner child, feeling down, overly optimistic." },
             { num: "XX", name: "Judgement", upright: "Judgement, rebirth, inner calling, absolution.", reversed: "Self-doubt, inner critic, ignoring the call." },
-            { num: "XXI", name: "The World", upright: "Completion, integration, accomplishment, travel.", reversed: "Seeking personal closure, short-cuts, delays." }
-      ,
+            { num: "XXI", name: "The World", upright: "Completion, integration, accomplishment, travel.", reversed: "Seeking personal closure, short-cuts, delays." },
             // Wands
             { num: "Ace", name: "Ace of Wands", upright: "Inspiration, new opportunities, growth, potential.", reversed: "An emerging idea, lack of direction, distractions." },
             { num: "II", name: "Two of Wands", upright: "Future planning, progress, decisions, discovery.", reversed: "Personal goals, inner alignment, fear of unknown." },
@@ -290,7 +343,6 @@
             { num: "Knight", name: "Knight of Wands", upright: "Energy, passion, inspired action, adventure, impulsiveness.", reversed: "Passion project, haste, scattered energy, delays." },
             { num: "Queen", name: "Queen of Wands", upright: "Courage, confidence, independence, social butterfly.", reversed: "Self-respect, self-confidence, introverted, re-establish sense of self." },
             { num: "King", name: "King of Wands", upright: "Natural-born leader, vision, entrepreneur, honor.", reversed: "Impulsiveness, haste, ruthless, high expectations." },
-
             // Cups
             { num: "Ace", name: "Ace of Cups", upright: "Love, new relationships, compassion, creativity.", reversed: "Self-love, intuition, repressed emotions." },
             { num: "II", name: "Two of Cups", upright: "Unified love, partnership, mutual attraction.", reversed: "Self-love, break-ups, disharmony, distrust." },
@@ -306,7 +358,6 @@
             { num: "Knight", name: "Knight of Cups", upright: "Creativity, romance, charm, imagination, beauty.", reversed: "Overactive imagination, unrealistic, jealous, moody." },
             { num: "Queen", name: "Queen of Cups", upright: "Compassionate, caring, emotionally stable, intuitive.", reversed: "Inner feelings, self-care, co-dependency, martyr." },
             { num: "King", name: "King of Cups", upright: "Emotionally balanced, compassionate, diplomatic.", reversed: "Self-compassion, inner balance, moodiness, emotionally manipulative." },
-
             // Swords
             { num: "Ace", name: "Ace of Swords", upright: "Breakthroughs, new ideas, mental clarity, success.", reversed: "Inner clarity, re-thinking an idea, clouded judgement." },
             { num: "II", name: "Two of Swords", upright: "Difficult decisions, weighing up options, an impasse, avoidance.", reversed: "Indecision, confusion, information overload, stalemate." },
@@ -322,7 +373,6 @@
             { num: "Knight", name: "Knight of Swords", upright: "Ambitious, action-oriented, driven to succeed, fast-thinking.", reversed: "Restless, unfocused, impulsive, burn-out." },
             { num: "Queen", name: "Queen of Swords", upright: "Independent, unbiased judgement, clear boundaries, direct communication.", reversed: "Overly-emotional, easily influenced, bitchy, cold-hearted." },
             { num: "King", name: "King of Swords", upright: "Mental clarity, intellectual power, authority, truth.", reversed: "Quiet power, inner truth, misuse of power, manipulation." },
-
             // Pentacles
             { num: "Ace", name: "Ace of Pentacles", upright: "A new financial or career opportunity, manifestation, abundance.", reversed: "Lost opportunity, lack of planning and foresight." },
             { num: "II", name: "Two of Pentacles", upright: "Multiple priorities, time management, prioritization, adaptability.", reversed: "Over-committed, disorganization, reprioritization." },
@@ -374,8 +424,15 @@
         function drawSpread(type) {
             const container = document.getElementById('spreadContainer');
             const readingArea = document.getElementById('readingArea');
+            const synthesizeBtn = document.getElementById('btnSynthesize');
+            
+            // Dismiss keyboard if open
+            document.getElementById('questionInput').blur(); 
+            
             container.innerHTML = '';
             readingArea.innerHTML = '';
+            currentSpreadData = []; 
+            synthesizeBtn.style.display = 'block';
 
             const shuffledDeck = shuffle([...deck]);
             const positions = spreads[type];
@@ -383,6 +440,14 @@
             positions.forEach((pos, index) => {
                 const cardData = shuffledDeck[index];
                 const isReversed = Math.random() > 0.5;
+                const orientationText = isReversed ? "Reversed" : "Upright";
+                
+                // Store data for the AI synthesis generator
+                currentSpreadData.push({
+                    position: pos.label,
+                    cardName: cardData.name,
+                    orientation: orientationText
+                });
                 
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = 'card-wrapper';
@@ -407,11 +472,10 @@
                 readingCard.id = `reading-${pos.id}`;
                 
                 const meaning = isReversed ? cardData.reversed : cardData.upright;
-                const orientationText = isReversed ? "(Reversed)" : "(Upright)";
 
                 readingCard.innerHTML = `
                     <div class="reading-title">${pos.label}</div>
-                    <div class="reading-card-name">${cardData.name} ${orientationText}</div>
+                    <div class="reading-card-name">${cardData.name} (${orientationText})</div>
                     <div class="reading-meaning">${meaning}</div>
                 `;
                 
@@ -421,9 +485,34 @@
 
         function flipCard(cardElement, readingId) {
             if (!cardElement.classList.contains('flipped')) {
+                // Play audio
+                flipAudio.currentTime = 0;
+                flipAudio.play().catch(e => console.log("Audio play prevented until user interaction."));
+                
                 cardElement.classList.add('flipped');
                 document.getElementById(readingId).style.display = 'block';
             }
+        }
+
+        function generateAIReading() {
+            const question = document.getElementById('questionInput').value || "a general overview of my current path";
+            
+            let promptText = `I am doing a tarot reading and need you to synthesize the combined meaning of the cards. My focus/question is: "${question}".\n\nHere are the cards I drew in their respective positions:\n`;
+            
+            currentSpreadData.forEach(card => {
+                promptText += `- ${card.position}: ${card.cardName} (${card.orientation})\n`;
+            });
+            
+            promptText += `\nPlease provide a holistic summary of this reading, explaining how these cards interact with each other to address my focus.`;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(promptText).then(() => {
+                const btn = document.getElementById('btnSynthesize');
+                btn.innerText = "Prompt Copied!";
+                setTimeout(() => { btn.innerText = "Copy Spread for AI Synthesis"; }, 3000);
+            }).catch(err => {
+                alert("Failed to copy text. Your browser may not support this feature.");
+            });
         }
     </script>
 </body>
