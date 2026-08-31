@@ -8,7 +8,7 @@
     <title>Arcanum Oracle</title>
     <style>
         :root {
-            --bg-dark: #111613; /* Deep forest green/black */
+            --bg-dark: #111613;
             --burgundy: #4a0e17;
             --gold: #d4af37;
             --gold-dim: #8a7322;
@@ -50,7 +50,7 @@
         .controls {
             display: flex;
             gap: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
             justify-content: center;
             width: 100%;
@@ -79,14 +79,14 @@
         .spread-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            /* Increased vertical gap to prevent label overlap in the Celtic Cross */
+            gap: 45px 15px; 
             justify-content: center;
             width: 100%;
             max-width: 500px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        /* Card 3D Flip Mechanics */
         .card-wrapper {
             width: 100px;
             height: 170px;
@@ -117,7 +117,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* The Astronomical Back Design */
         .card-back {
             background-color: var(--burgundy);
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 170'%3E%3Ccircle cx='50' cy='85' r='40' stroke='%23d4af37' stroke-width='1' fill='none'/%3E%3Ccircle cx='50' cy='85' r='30' stroke='%23d4af37' stroke-width='0.5' fill='none' stroke-dasharray='2,2'/%3E%3Cline x1='10' y1='85' x2='90' y2='85' stroke='%23d4af37' stroke-width='0.5'/%3E%3Cline x1='50' y1='45' x2='50' y2='125' stroke='%23d4af37' stroke-width='0.5'/%3E%3Cpath d='M 50 10 L 55 20 L 65 25 L 55 30 L 50 40 L 45 30 L 35 25 L 45 20 Z' fill='%23d4af37' opacity='0.5'/%3E%3Cpath d='M 50 160 L 55 150 L 65 145 L 55 140 L 50 130 L 45 140 L 35 145 L 45 150 Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E");
@@ -132,7 +131,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 10px;
+            padding: 8px;
             text-align: center;
         }
 
@@ -141,36 +140,41 @@
         }
 
         .card-name {
-            font-size: 12px;
+            font-size: 10px; /* Reduced font size slightly */
             font-weight: bold;
             text-transform: uppercase;
             border: 1px solid var(--bg-dark);
-            padding: 4px;
-            width: 90%;
+            padding: 6px 2px;
+            width: 95%;
+            word-wrap: break-word; /* Forces longer names to wrap cleanly */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px; /* Gives the border a uniform height */
         }
 
         .card-num {
-            font-size: 18px;
-            margin-bottom: 5px;
+            font-size: 16px;
+            margin-bottom: 8px;
             font-family: serif;
         }
 
         .position-label {
             position: absolute;
-            bottom: -25px;
+            bottom: -28px;
             width: 100%;
             text-align: center;
-            font-size: 11px;
+            font-size: 10px;
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            line-height: 1.2;
         }
 
-        /* Reading Interpretation Area */
         .reading-area {
             width: 100%;
             max-width: 400px;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .reading-card {
@@ -206,7 +210,6 @@
             line-height: 1.6;
             color: var(--text-muted);
         }
-
     </style>
 </head>
 <body>
@@ -228,7 +231,6 @@
     </div>
 
     <script>
-        // Full Major Arcana Data
         const deck = [
             { num: "0", name: "The Fool", upright: "New beginnings, innocence, spontaneity, a free spirit.", reversed: "Recklessness, risk-taking, holding back, naivety." },
             { num: "I", name: "The Magician", upright: "Manifestation, resourcefulness, power, inspired action.", reversed: "Manipulation, poor planning, untapped talents." },
@@ -298,7 +300,6 @@
                 const cardData = shuffledDeck[index];
                 const isReversed = Math.random() > 0.5;
                 
-                // Create Card UI
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = 'card-wrapper';
                 cardWrapper.onclick = () => flipCard(cardWrapper, `reading-${pos.id}`);
@@ -316,7 +317,6 @@
                 
                 container.appendChild(cardWrapper);
 
-                // Create Reading Text (Hidden initially)
                 const readingCard = document.createElement('div');
                 readingCard.className = 'reading-card';
                 readingCard.id = `reading-${pos.id}`;
