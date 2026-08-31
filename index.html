@@ -33,6 +33,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+        }
+
+        .btn-audio {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            color: var(--gold-dim);
+            border: 1px solid var(--gold-dim);
+            padding: 5px 10px;
+            font-size: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 10;
+            text-transform: uppercase;
         }
 
         h1 {
@@ -47,9 +63,9 @@
             padding-bottom: 10px;
             width: 100%;
             max-width: 400px;
+            margin-top: 30px; /* Added margin to clear the audio button */
         }
 
-        /* Question Box Styles */
         .intention-box {
             width: 100%;
             max-width: 400px;
@@ -270,11 +286,13 @@
             padding: 15px;
             font-size: 16px;
             margin-top: 20px;
-            display: none; /* Hidden until cards are drawn */
+            display: none; 
         }
     </style>
 </head>
 <body>
+
+    <button id="audioToggle" class="btn-audio" onclick="toggleAmbience()">🔈 Ambience</button>
 
     <h1>Arcanum Oracle</h1>
     
@@ -300,12 +318,35 @@
     <button class="btn-synthesize" id="btnSynthesize" onclick="generateAIReading()">Copy Spread for AI Synthesis</button>
 
     <script>
-        // Load the swoosh audio (requires a file named flip.mp3 in the same folder)
+        // Audio Setup
         const flipAudio = new Audio('flip.mp3');
+        flipAudio.preload = 'auto';
+        
+        document.body.addEventListener('touchstart', function() {
+            flipAudio.load();
+        }, { once: true });
+
+        const ambientAudio = new Audio('ambience.mp3');
+        ambientAudio.loop = true;
+        ambientAudio.volume = 0.4;
+        let isAmbiencePlaying = false;
+
+        function toggleAmbience() {
+            const btn = document.getElementById('audioToggle');
+            if (isAmbiencePlaying) {
+                ambientAudio.pause();
+                btn.innerText = "🔈 Ambience";
+            } else {
+                ambientAudio.play().catch(e => console.log("Playback blocked by browser"));
+                btn.innerText = "🔊 Ambience";
+            }
+            isAmbiencePlaying = !isAmbiencePlaying;
+        }
         
         let currentSpreadData = [];
 
         const deck = [
+            // Major Arcana
             { num: "0", name: "The Fool", upright: "New beginnings, innocence, spontaneity, a free spirit.", reversed: "Recklessness, risk-taking, holding back, naivety." },
             { num: "I", name: "The Magician", upright: "Manifestation, resourcefulness, power, inspired action.", reversed: "Manipulation, poor planning, untapped talents." },
             { num: "II", name: "The High Priestess", upright: "Intuition, sacred knowledge, divine feminine, the subconscious.", reversed: "Secrets, disconnected from intuition, withdrawal." },
@@ -426,7 +467,6 @@
             const readingArea = document.getElementById('readingArea');
             const synthesizeBtn = document.getElementById('btnSynthesize');
             
-            // Dismiss keyboard if open
             document.getElementById('questionInput').blur(); 
             
             container.innerHTML = '';
@@ -442,7 +482,6 @@
                 const isReversed = Math.random() > 0.5;
                 const orientationText = isReversed ? "Reversed" : "Upright";
                 
-                // Store data for the AI synthesis generator
                 currentSpreadData.push({
                     position: pos.label,
                     cardName: cardData.name,
@@ -485,7 +524,6 @@
 
         function flipCard(cardElement, readingId) {
             if (!cardElement.classList.contains('flipped')) {
-                // Play audio
                 flipAudio.currentTime = 0;
                 flipAudio.play().catch(e => console.log("Audio play prevented until user interaction."));
                 
@@ -505,7 +543,6 @@
             
             promptText += `\nPlease provide a holistic summary of this reading, explaining how these cards interact with each other to address my focus.`;
 
-            // Copy to clipboard
             navigator.clipboard.writeText(promptText).then(() => {
                 const btn = document.getElementById('btnSynthesize');
                 btn.innerText = "Prompt Copied!";
