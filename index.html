@@ -532,16 +532,22 @@
             }
         }
 
-        function generateAIReading() {
+      function generateAIReading() {
             const question = document.getElementById('questionInput').value || "a general overview of my current path";
             
-            let promptText = `I am doing a tarot reading and need you to synthesize the combined meaning of the cards. My focus/question is: "${question}".\n\nHere are the cards I drew in their respective positions:\n`;
+            // Determine spread type based on how many cards were drawn
+            let spreadType = "Tarot";
+            if (currentSpreadData.length === 1) spreadType = "Single Card";
+            if (currentSpreadData.length === 3) spreadType = "3-Card";
+            if (currentSpreadData.length === 10) spreadType = "Celtic Cross";
+            
+            let promptText = `Act as an expert, intuitive Tarot reader. I have drawn a ${spreadType} spread to explore the following focus: "${question}".\n\nHere are the specific cards and their structural positions:\n`;
             
             currentSpreadData.forEach(card => {
                 promptText += `- ${card.position}: ${card.cardName} (${card.orientation})\n`;
             });
             
-            promptText += `\nPlease provide a holistic summary of this reading, explaining how these cards interact with each other to address my focus.`;
+            promptText += `\nPlease provide a deep, holistic synthesis of this reading. Do not simply list the standard individual card meanings. Instead, weave them together into a cohesive narrative. Highlight any overarching themes, elemental energies, or striking contrasts between the cards. Connect the reading directly to my focus, provide grounded advice, and end with a single, thought-provoking question for my own reflection.`;
 
             navigator.clipboard.writeText(promptText).then(() => {
                 const btn = document.getElementById('btnSynthesize');
