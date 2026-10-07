@@ -133,7 +133,25 @@
     .bal-nums{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.15rem;color:var(--ash-light);margin-bottom:.8rem}
 
     /* v5: responsive layouts and keyboard/motion support */
-    :root{--ash:#b4a183;--ash-light:#c2af91}
+    :root{--ash:#c7b79e;--ash-light:#d4c4aa}
+    .panel-lbl,.br-title{font-size:.875rem;letter-spacing:.16rem;color:#dfb96f;opacity:1}
+    .sys-tab,.spread-name,.pos-label,.cr-pos,.cr-orient,.bd-zone,.bd-orient,.reset-btn,.aett-lbl,.aett-meta,.bal-nums{font-size:.875rem}
+    .spread-desc{font-size:.95rem;opacity:1;line-height:1.5}
+    .spread-btn{padding:.85rem .5rem}
+    textarea{font-size:1rem;font-style:normal}
+    .cr-text,.bd-text{font-size:1.125rem;line-height:1.8}
+    .cr-name,.bd-name{font-size:1.15rem}
+    .cr-orient,.bd-orient{color:#e0c58c!important;opacity:1;letter-spacing:.08rem}
+    .cr-pos{letter-spacing:.12rem}
+    .cr-pos-note,.field-help,.guide p{font:1rem/1.65 Georgia,serif;color:var(--ash-light)}
+    .cr-pos-note{margin:.15rem 0 .65rem}
+    .field-help{margin:.65rem 0 0}
+    .guide{margin-top:1rem;border-top:1px solid #675031;padding-top:.85rem}
+    .guide summary{font-size:1rem;color:#e8c060;cursor:pointer;line-height:1.5}
+    .guide p{margin:.75rem 0 0}
+    .guide strong{color:#f0e2c0}
+    .reveal-btn,.cast-btn{font-size:1rem;letter-spacing:.08rem}
+    .cc-divider{color:#c7b4e3;opacity:1;font-size:.875rem}
     .panel-lbl{display:block}
     button:focus-visible,textarea:focus-visible{outline:2px solid #f0e2c0;outline-offset:4px}
     button{touch-action:manipulation}
@@ -395,10 +413,18 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <div class="panel">
       <label class="panel-lbl" for="question">᛭ Set Your Intention</label>
       <textarea id="question" placeholder="Write an optional intention. It will appear with your reading for reflection; the draw remains random." rows="3"></textarea>
+      <p class="field-help">Your intention stays in this browser and appears beside the reading. The symbols are drawn at random; their written meanings do not change with your question.</p>
     </div>
     <div class="panel">
       <div class="panel-lbl">᛭ Choose Your Spread</div>
       <div class="spread-options" id="spread-options"></div>
+      <details class="guide">
+        <summary>How to read your cast</summary>
+        <p id="system-guide"></p>
+        <p><strong>Positions give context.</strong> Read each symbol through the role of its position. A future or outcome position suggests a direction to reflect on, rather than a fixed prediction.</p>
+        <p id="orientation-guide"></p>
+        <p id="blot-guide"></p>
+      </details>
     </div>
     <button class="cast-btn" id="cast-btn" disabled onclick="castCards()">ᚨ Cast the Runes ᚨ</button>
     <div id="card-display" class="hidden">
@@ -650,10 +676,18 @@ function makeCardEl(card,i,posLabel){
 }
 
 // ─── SYSTEM SELECT ────────────────────────────────────────────────────────────
+const POSITION_NOTES={
+  runes:{1:['The central theme to reflect on.'],3:['The past influence you bring with you.','The situation or energy around you now.','A direction that may develop from the present.'],5:['What supports or underlies the situation.','What is active in the situation now.','An influence that may be easy to overlook.','A useful approach or action to consider.','Where the current pattern may lead.']},
+  tarot:{1:['The central theme to reflect on.'],3:['The past influence you bring with you.','The situation or energy around you now.','A direction that may develop from the present.'],5:['The situation you are exploring.','The tension or obstacle to work with.','What supports or underlies the situation.','A useful approach or action to consider.','Where the current pattern may lead.'],10:['The situation at the center of the reading.','The tension crossing or shaping the present.','The underlying roots of the situation.','An influence from the recent past.','A possibility, aspiration, or direction in view.','A development that may emerge next.','Your stance or role in the situation.','Conditions and influences around you.','What you hope for or fear.','Where the current pattern may lead.']},
+  ogham:{1:['The central theme to reflect on.'],3:['Practical matters, stability, and everyday life.','Feelings, relationships, and inner movement.','Ideas, perspective, and possibility.'],5:['The origins and foundations of the situation.','The direction it is growing.','What is expressed or visible now.','What the situation is producing.','What could begin or grow from it.']}
+};
 function selectSystem(s){
   clearCast();
   curSys=s;curSpread=null;drawn=[];
   const cfg=CONFIGS[s];
+  document.getElementById('system-guide').textContent=s==='runes'?'Runes use the 24 symbols of the Elder Futhark. Compare their meanings with your intention and with the other symbols in the spread.':s==='tarot'?'Tarot draws from 78 cards. Major Arcana describe broad themes; Minor Arcana explore everyday situations through four suits.':'Ogham uses tree-associated symbols. The tree and its meaning provide a lens for reflecting on your situation.';
+  document.getElementById('orientation-guide').textContent=s==='runes'?'Upright shows the symbol’s direct expression. Merkstave is this app’s reversed reading: it explores blockage, tension, or an inward expression. Some runes have no reversed meaning here. Reversal is not automatically bad.':'Upright shows the symbol’s direct expression. Reversed explores blockage, tension, or an inward expression. Reversal is not automatically bad.';
+  const bg=document.getElementById('blot-guide');bg.hidden=s!=='runes';bg.textContent='Blót scatters all 24 runes. The Core is up to five face-up runes nearest the center. Aettir are the three rune families: Freyr’s, Hagal’s, and Tyr’s; their themes are described in the reading. Balance compares upright and merkstave face-up runes. “Shadow” means the merkstave proportion, not a judgment. Face-down runes are excluded until you turn them over; the reading then updates.';
   document.getElementById('hdr-runes').textContent=cfg.headerSyms;
   document.getElementById('app-title').textContent=cfg.title;
   document.getElementById('app-title').style.color=cfg.bright;
@@ -1030,6 +1064,7 @@ function revealReading(){
     const sub=curSys==='ogham'?`<div style="font-size:.75rem;color:#9a8a6a;font-style:italic;margin-bottom:.2rem">${card.tree}</div>`:curSys==='tarot'&&card.arcana==='minor'?`<div style="font-size:.75rem;color:${SUIT_COLS[card.suit]};font-family:'Oracle Symbols','Cinzel',serif;letter-spacing:.1rem;margin-bottom:.2rem;opacity:.8">${card.suit.charAt(0).toUpperCase()+card.suit.slice(1)}</div>`:'';
     return`<div class="card-reading"${isLast?' style="margin-bottom:0;padding-bottom:0;border-bottom:none"':''}>
       <div class="cr-pos">${pos[i]}</div>
+      <div class="cr-pos-note">${POSITION_NOTES[curSys][curSpread][i]}</div>
       <div class="cr-name" style="color:${nameColor}">${card.name}</div>
       ${sub}
       <div class="cr-orient" style="color:${orientColor}">${rev?(curSys==='runes'?'Merkstave':'Reversed'):'Upright'}</div>
