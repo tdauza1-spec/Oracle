@@ -1,562 +1,1071 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Arcanum Oracle</title>
-    <style>
-        :root {
-            --bg-dark: #111613;
-            --burgundy: #4a0e17;
-            --gold: #d4af37;
-            --gold-dim: #8a7322;
-            --parchment-light: #f4ecd8;
-            --parchment-dark: #dfcfae;
-            --ink: #2b1f15; 
-            --text-muted: #9e9786;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Oracle · v5</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+@font-face{font-family:'Oracle Symbols';src:url(data:font/woff2;base64,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) format('woff2');font-weight:400;unicode-range:U+16A0-16FF;font-display:swap}
+@font-face{font-family:'Oracle Symbols';src:url(data:font/woff2;base64,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) format('woff2');font-weight:400;unicode-range:U+1680-169F;font-display:swap}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: "Georgia", serif;
-        }
+    :root{--wood-deep:#0b0703;--parchment:#deca9a;--cream:#f0e2c0;--ember:#c44828;--ash:#7a6a52;--ash-light:#9a8a6a}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background-color:var(--wood-deep);background-image:repeating-linear-gradient(92deg,transparent,transparent 3px,rgba(255,190,80,0.013) 3px,rgba(255,190,80,0.013) 5px),repeating-linear-gradient(2deg,transparent,transparent 55px,rgba(0,0,0,0.1) 55px,rgba(0,0,0,0.1) 57px),radial-gradient(ellipse at 15% 25%,rgba(55,28,5,0.45) 0%,transparent 55%),radial-gradient(ellipse at 85% 75%,rgba(35,18,4,0.35) 0%,transparent 50%);color:var(--parchment);font-family:'Oracle Symbols','IM Fell English',Georgia,serif;min-height:100vh}
+    .container{max-width:820px;margin:0 auto;padding:0 1.2rem 5rem}
+    @keyframes hglow{from{opacity:.3}to{opacity:.6;text-shadow:0 0 22px rgba(200,150,40,0.45)}}
+    @keyframes cappear{from{opacity:0;transform:translateY(18px) scale(0.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    header{text-align:center;padding:2rem 0 1rem}
+    .hdr-runes{font-size:1.1rem;letter-spacing:.55rem;color:#b87d2a;opacity:.5;margin-bottom:.6rem;animation:hglow 4s ease-in-out infinite alternate}
+    h1{font-family:'Oracle Symbols','Cinzel Decorative',serif;font-size:clamp(1.4rem,4vw,2.1rem);color:#e8c060;text-shadow:0 0 28px rgba(200,160,60,0.35),0 3px 6px rgba(0,0,0,0.9);letter-spacing:.06rem;margin:0}
+    .subtitle{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;color:var(--ash);letter-spacing:.28rem;text-transform:uppercase;margin-top:.45rem}
+    .divider{text-align:center;color:#b87d2a;font-size:.9rem;letter-spacing:.9rem;margin:1rem 0;opacity:.4}
+    .sys-tabs{display:flex;gap:.6rem;margin-bottom:1.1rem}
+    .sys-tab{flex:1;background:rgba(8,4,1,0.6);border:1px solid rgba(130,100,50,0.2);border-radius:3px;color:var(--ash);font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.2rem;padding:.65rem .3rem;cursor:pointer;transition:all .3s;text-align:center;text-transform:uppercase}
+    .sys-tab:hover{color:var(--parchment)}
+    .sys-sym{display:block;font-size:1.3rem;margin-bottom:.2rem;line-height:1}
+    .panel{background:linear-gradient(155deg,rgba(56,32,14,0.72),rgba(20,11,4,0.88));border:1px solid rgba(180,120,40,0.26);border-radius:3px;padding:1.3rem 1.5rem;margin-bottom:1.1rem;box-shadow:inset 0 1px 0 rgba(200,160,60,0.07),0 4px 20px rgba(0,0,0,0.5)}
+    .panel-lbl{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.3rem;color:#b87d2a;text-transform:uppercase;margin-bottom:.9rem;opacity:.88}
+    textarea{width:100%;background:rgba(8,4,1,0.65);border:1px solid rgba(180,120,40,0.3);border-radius:2px;color:var(--cream);font-family:'Oracle Symbols','IM Fell English',Georgia,serif;font-size:.95rem;font-style:italic;padding:.75rem .9rem;resize:vertical;min-height:72px;line-height:1.7;transition:border-color .3s}
+    textarea:focus{outline:none;border-color:rgba(200,150,50,0.65);box-shadow:0 0 16px rgba(180,120,40,0.16)}
+    textarea::placeholder{color:var(--ash);font-style:italic}
+    .spread-options{display:flex;gap:.7rem;flex-wrap:wrap}
+    .spread-btn{flex:1;min-width:80px;background:rgba(8,4,1,0.6);border:1px solid rgba(130,100,50,0.25);border-radius:3px;color:var(--ash);font-family:'Oracle Symbols','Cinzel',serif;padding:.75rem .3rem;cursor:pointer;transition:all .3s;text-align:center}
+    .spread-btn:hover{color:var(--parchment)}
+    .spread-sym{display:block;font-size:1.6rem;margin-bottom:.28rem;line-height:1}
+    .spread-name{display:block;font-size:.75rem;letter-spacing:.08rem;text-transform:uppercase;margin-bottom:.22rem}
+    .spread-desc{display:block;font-size:.75rem;font-style:italic;opacity:.75;text-transform:none;letter-spacing:0;font-family:'Oracle Symbols','IM Fell English',serif}
+    .cast-btn{width:100%;background:linear-gradient(145deg,#3a1e08,#522c0c,#3a1e08);border-radius:3px;font-family:'Oracle Symbols','Cinzel Decorative',serif;font-size:.9rem;padding:.9rem;cursor:pointer;letter-spacing:.18rem;transition:all .3s;position:relative;overflow:hidden}
+    .cast-btn:not(:disabled):hover{transform:translateY(-2px)}
+    .cast-btn:disabled{opacity:.38;cursor:not-allowed}
+    /* Standard spread cards */
+    .rune-spread{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.3rem 0 .5rem}
+    .rune-card-wrapper{display:flex;flex-direction:column;align-items:center;gap:.38rem;opacity:0;animation:cappear .45s ease forwards}
+    .pos-label{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.18rem;color:var(--ash-light);text-transform:uppercase;text-align:center;max-width:110px}
+    .rune-card{width:104px;height:158px;perspective:900px}
+    .rune-card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .85s cubic-bezier(0.4,0.1,0.2,1)}
+    .rune-card.flipped .rune-card-inner{transform:rotateY(180deg)}
+    .card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:.45rem}
+    .card-front{background:linear-gradient(145deg,#1e1008,#2c1708,#1a0d05);border:1px solid rgba(180,120,40,0.38);box-shadow:inset 0 0 24px rgba(0,0,0,0.6),0 5px 16px rgba(0,0,0,0.5)}
+    .card-back{background:linear-gradient(155deg,#241408,#180e04,#2a1808);border:1px solid rgba(180,120,40,0.32);box-shadow:inset 0 0 24px rgba(0,0,0,0.5),0 5px 16px rgba(0,0,0,0.5);transform:rotateY(180deg)}
+    .sym-rev{display:block;transform:rotate(180deg)}
+    .card-hidden-sym{font-size:2.6rem;color:rgba(180,120,40,0.15);line-height:1}
+    .card-hidden-sub{font-size:.75rem;color:rgba(180,120,40,0.09);letter-spacing:.1rem;margin-top:.2rem}
+    /* Reveal / reading */
+    .reveal-btn{width:100%;background:linear-gradient(145deg,#120820,#1e1035,#120820);border:1px solid rgba(130,80,200,0.5);border-radius:3px;color:#c0a0e8;font-family:'Oracle Symbols','Cinzel Decorative',serif;font-size:.78rem;padding:.9rem;cursor:pointer;letter-spacing:.15rem;transition:all .3s;margin-top:.5rem}
+    .reveal-btn:not(:disabled):hover{background:linear-gradient(145deg,#1e1035,#2e1850,#1e1035);box-shadow:0 0 25px rgba(130,80,200,0.3);transform:translateY(-1px)}
+    .reveal-btn:disabled{opacity:.38;cursor:not-allowed}
+    .reading-panel{background:rgba(4,2,1,0.84);border:1px solid rgba(180,120,40,0.2);border-radius:3px;padding:1.5rem 1.6rem;margin-top:1.1rem;animation:fadeup .7s ease}
+    .card-reading{margin-bottom:1.6rem;padding-bottom:1.6rem;border-bottom:1px solid rgba(180,120,40,0.12)}
+    .card-reading:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+    .cr-pos{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.25rem;color:var(--ash-light);text-transform:uppercase;margin-bottom:.3rem}
+    .cr-name{font-family:'Oracle Symbols','Cinzel',serif;font-size:.95rem;letter-spacing:.05rem;margin-bottom:.2rem}
+    .cr-orient{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.18rem;text-transform:uppercase;opacity:.85;margin-bottom:.75rem}
+    .cr-text{font-family:'Oracle Symbols',Georgia,'Times New Roman',serif;font-size:1.02rem;line-height:2;color:#f0e2c0}
+    .reset-btn{background:none;border:none;color:var(--ash);font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.28rem;cursor:pointer;padding:.5rem;text-transform:uppercase;transition:color .3s;display:block;width:100%;text-align:center;margin-top:1.5rem}
+    .reset-btn:hover{color:var(--parchment)}
+    .hidden{display:none!important}
+    .ornament{position:fixed;font-size:1.4rem;color:#b87d2a;opacity:.09;pointer-events:none;user-select:none}
+    .cc-wrap{display:flex;flex-direction:column;align-items:center;gap:.4rem;width:100%}
+    .cc-cross{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+    .cc-row{display:flex;gap:.5rem;align-items:center;justify-content:center}
+    .cc-divider{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.28rem;color:#7060a0;text-transform:uppercase;margin:.5rem 0 .3rem;opacity:.75}
+    .cc-staff{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--parchment-light);
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
+    /* ── BLÓT CLOTH ────────────────────────────────────── */
+    #blot-cloth{
+      position:relative;width:min(540px,100%);aspect-ratio:1;margin:1.2rem auto .6rem;
+      border-radius:50%;
+      background:radial-gradient(circle at center,#1e1208 0%,#120a04 55%,#070402 100%);
+      border:1px solid rgba(180,120,40,0.32);
+      box-shadow:0 0 60px rgba(0,0,0,0.7),inset 0 0 80px rgba(0,0,0,0.5),0 0 0 10px rgba(6,3,1,0.9);
+    }
+    .blot-ring{
+      position:absolute;border-radius:50%;border:1px solid rgba(180,120,40,0.13);
+      top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+    }
+    .blot-zone-lbl{
+      position:absolute;font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.22rem;
+      text-transform:uppercase;color:rgba(180,120,40,0.22);pointer-events:none;
+      white-space:nowrap;left:50%;transform:translateX(-50%);
+    }
+    .blot-tile{
+      position:absolute;width:44px;height:44px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(145deg,#1e1008,#140c04);
+      border:1px solid rgba(180,120,40,0.42);
+      cursor:pointer;user-select:none;font-size:1.3rem;line-height:1;
+      transition:border-color .2s,box-shadow .2s;z-index:2;
+    }
+    .blot-tile:hover{border-color:rgba(220,170,60,0.9);box-shadow:0 0 14px rgba(200,150,40,0.45);z-index:10}
+    .blot-tile.blot-core{border-color:rgba(220,170,60,0.6);box-shadow:0 0 10px rgba(200,150,40,0.28)}
+    .blot-tile.blot-selected{border-color:#e8c060;box-shadow:0 0 22px rgba(220,170,60,0.55);z-index:10}
+    .blot-tile-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.55s cubic-bezier(0.4,0.1,0.2,1);border-radius:50%}
+    .blot-tile-inner.flipped{transform:rotateY(180deg)}
+    .blot-tile-face{position:absolute;inset:0;border-radius:50%;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center}
+    .blot-tile-back{transform:rotateY(180deg)}
+    .blot-tile.face-down{border-color:rgba(120,80,30,0.3);opacity:.85}
+    #blot-desc{
+      background:rgba(4,2,1,0.82);border:1px solid rgba(180,120,40,0.2);
+      border-radius:3px;padding:1.1rem 1.4rem;margin:.6rem 0 .3rem;
+      animation:fadeup .35s ease;
+    }
+    .bd-zone{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.22rem;text-transform:uppercase;color:var(--ash-light);margin-bottom:.25rem}
+    .bd-name{font-family:'Oracle Symbols','Cinzel',serif;font-size:.95rem;color:#e8c060;margin-bottom:.18rem}
+    .bd-orient{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.16rem;text-transform:uppercase;margin-bottom:.65rem}
+    .bd-text{font-family:'Oracle Symbols',Georgia,'Times New Roman',serif;font-size:1rem;line-height:1.95;color:#f0e2c0}
+    /* Blót reading sections */
+    .br-section{margin-bottom:1.6rem;padding-bottom:1.6rem;border-bottom:1px solid rgba(180,120,40,0.12)}
+    .br-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+    .br-title{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.28rem;color:#b87d2a;text-transform:uppercase;margin-bottom:.9rem;opacity:.9}
+    .br-intro{font-size:.82rem;color:var(--ash-light);font-style:italic;margin-bottom:1rem;line-height:1.7}
+    .br-core-entry{margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(180,120,40,0.08)}
+    .br-core-entry:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+    .aett-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem}
+    .aett-lbl{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;color:var(--parchment);width:100px;flex-shrink:0}
+    .aett-track{flex:1;height:7px;background:rgba(180,120,40,0.1);border-radius:4px;overflow:hidden}
+    .aett-fill{height:100%;border-radius:4px;transition:width .9s ease .2s}
+    .aett-meta{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.08rem;width:80px;text-align:right;flex-shrink:0}
+    .balance-track{height:8px;border-radius:4px;overflow:hidden;display:flex;margin-bottom:.45rem}
+    .bal-up{background:#b87d2a;transition:width .9s ease .2s}
+    .bal-mk{background:#c44828;transition:width .9s ease .2s}
+    .bal-nums{font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.15rem;color:var(--ash-light);margin-bottom:.8rem}
 
-        .btn-audio {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: transparent;
-            color: var(--gold-dim);
-            border: 1px solid var(--gold-dim);
-            padding: 5px 10px;
-            font-size: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            z-index: 10;
-            text-transform: uppercase;
-        }
+    /* v5: responsive layouts and keyboard/motion support */
+    :root{--ash:#b4a183;--ash-light:#c2af91}
+    .panel-lbl{display:block}
+    button:focus-visible,textarea:focus-visible{outline:2px solid #f0e2c0;outline-offset:4px}
+    button{touch-action:manipulation}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    #reading-intention{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #675031}
+    .rune-card{width:124px;height:202px}
+    .card-face{padding:.4rem;gap:4px}
+    .card-back span{letter-spacing:.03rem!important}
+    .pos-label{letter-spacing:.07rem;max-width:124px}
+    .cc-cross{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem .4rem;width:100%;max-width:570px;align-items:center}
+    .cc-cross>.rune-card-wrapper:nth-child(1){grid-area:1/2}
+    .cc-cross>.rune-card-wrapper:nth-child(2){grid-area:2/1}
+    .cc-center{grid-area:2/2;position:relative;min-height:290px;display:flex;align-items:flex-start;justify-content:center;padding-top:1.6rem}
+    .cc-center .cc-challenge{position:absolute;top:155px;left:50%;transform:translateX(-50%);width:100%;z-index:2}
+    .cc-challenge .rune-card-wrapper{animation:none;opacity:1;flex-direction:column-reverse}
+    .cc-challenge .rune-card{width:160px;height:108px}
+    .cc-challenge .card-back>span:last-child{display:none}
+    .cc-cross>.rune-card-wrapper:nth-child(4){grid-area:2/3}
+    .cc-cross>.rune-card-wrapper:nth-child(5){grid-area:3/2}
+    .blot-tile{width:var(--tile-size,44px);height:auto;aspect-ratio:1;padding:0;font-family:'Oracle Symbols',Georgia,serif}
+    .blot-tile:focus-visible{z-index:20}
+    .blot-help{text-align:center;color:var(--ash-light);font-size:.85rem;line-height:1.6;margin:.7rem 0}
+    .aett-meta{width:110px;letter-spacing:.02rem}
+    .aett-lbl{width:105px}
+    .br-intro{font-size:.95rem}
+    @media(max-width:600px){
+      .container{padding-left:.75rem;padding-right:.75rem}
+      .panel,.reading-panel{padding:1rem}
+      .sys-tab{letter-spacing:.08rem}
+      .spread-btn{flex-basis:40%}
+      .subtitle{letter-spacing:.12rem;line-height:1.7}
+      .cc-cross .rune-card{width:clamp(82px,24vw,124px);height:190px}
+      .cc-cross .cc-challenge .rune-card{width:clamp(118px,34vw,160px);height:110px}
+      .cc-cross .card-back>span:last-child{display:none}
+      .cc-cross .pos-label{font-size:.75rem;letter-spacing:0}
+      .cc-center{min-height:310px}
+      .aett-row{flex-wrap:wrap;gap:.35rem}
+      .aett-lbl{width:100%}
+      .aett-meta{width:125px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      .rune-card-wrapper{opacity:1}
+    }
+  </style>
+<!-- Embedded Noto Sans runic font license:
+Copyright 2022 The Noto Project Authors (https://github.com/notofonts/runic)
 
-        h1 {
-            color: var(--gold);
-            font-size: 28px;
-            font-weight: normal;
-            letter-spacing: 2px;
-            text-align: center;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--gold-dim);
-            padding-bottom: 10px;
-            width: 100%;
-            max-width: 400px;
-            margin-top: 30px; /* Added margin to clear the audio button */
-        }
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
 
-        .intention-box {
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
 
-        .intention-box label {
-            color: var(--gold-dim);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+—————————————————————————————-
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+—————————————————————————————-
 
-        .intention-box input {
-            background-color: rgba(74, 14, 23, 0.2);
-            border: 1px solid var(--gold-dim);
-            color: var(--parchment-light);
-            padding: 12px;
-            border-radius: 4px;
-            font-family: "Georgia", serif;
-            font-size: 16px;
-            outline: none;
-        }
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
 
-        .intention-box input:focus {
-            border-color: var(--gold);
-        }
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
 
-        .controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-            max-width: 400px;
-        }
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
 
-        button {
-            background-color: transparent;
-            color: var(--gold);
-            border: 1px solid var(--gold-dim);
-            padding: 10px 15px;
-            font-size: 14px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
 
-        button:active {
-            background-color: var(--burgundy);
-            border-color: var(--burgundy);
-            color: var(--parchment-light);
-        }
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
 
-        .spread-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 45px 15px; 
-            justify-content: center;
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 40px;
-        }
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting — in part or in whole — any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
 
-        .card-wrapper {
-            width: 100px;
-            height: 170px;
-            perspective: 1000px;
-            cursor: pointer;
-            position: relative;
-        }
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
 
-        .card-inner {
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-            position: relative;
-        }
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
 
-        .card-wrapper.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
 
-        .card-face {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            backface-visibility: hidden;
-            border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
 
-        .card-back {
-            background-color: var(--burgundy);
-            border: 2px solid var(--gold-dim);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 170'%3E%3Ccircle cx='50' cy='85' r='40' stroke='%23d4af37' stroke-width='1' fill='none'/%3E%3Ccircle cx='50' cy='85' r='30' stroke='%23d4af37' stroke-width='0.5' fill='none' stroke-dasharray='2,2'/%3E%3Cline x1='10' y1='85' x2='90' y2='85' stroke='%23d4af37' stroke-width='0.5'/%3E%3Cline x1='50' y1='45' x2='50' y2='125' stroke='%23d4af37' stroke-width='0.5'/%3E%3Cpath d='M 50 10 L 55 20 L 65 25 L 55 30 L 50 40 L 45 30 L 35 25 L 45 20 Z' fill='%23d4af37' opacity='0.5'/%3E%3Cpath d='M 50 160 L 55 150 L 65 145 L 55 140 L 50 130 L 45 140 L 35 145 L 45 150 Z' fill='%23d4af37' opacity='0.5'/%3E%3C/svg%3E");
-            background-size: cover;
-        }
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
 
-        .card-front {
-            background: radial-gradient(circle at center, var(--parchment-light) 0%, var(--parchment-dark) 100%);
-            color: var(--ink);
-            transform: rotateY(180deg);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 4px;
-            border: 1px solid var(--ink);
-            box-shadow: inset 0 0 0 3px transparent, inset 0 0 0 4px var(--ink);
-        }
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
 
-        .card-front.reversed {
-            transform: rotateY(180deg) rotateZ(180deg);
-        }
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
 
-        .card-num {
-            font-size: 14px;
-            font-weight: bold;
-            font-family: serif;
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--ink);
-            width: 80%;
-            text-align: center;
-            padding-bottom: 3px;
-            margin-top: 4px;
-        }
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
 
-        .card-center-art {
-            flex-grow: 1;
-            width: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='35' stroke='%232b1f15' stroke-width='0.5' fill='none' opacity='0.6'/%3E%3Ccircle cx='50' cy='50' r='25' stroke='%232b1f15' stroke-width='0.5' fill='none' stroke-dasharray='1,2' opacity='0.6'/%3E%3Cline x1='15' y1='50' x2='85' y2='50' stroke='%232b1f15' stroke-width='0.5' opacity='0.6'/%3E%3Cline x1='50' y1='15' x2='50' y2='85' stroke='%232b1f15' stroke-width='0.5' opacity='0.6'/%3E%3Ccircle cx='50' cy='50' r='10' stroke='%232b1f15' stroke-width='1' fill='none' opacity='0.6'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 5px 0;
-        }
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
 
-        .card-name {
-            font-size: 10px; 
-            font-weight: bold;
-            text-transform: uppercase;
-            border-top: 1px solid var(--ink);
-            width: 85%;
-            word-wrap: break-word; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 4px;
-            margin-bottom: 4px;
-            line-height: 1.1;
-        }
+-->
+<!-- Embedded Noto Sans ogham font license:
+Copyright 2022 The Noto Project Authors (https://github.com/notofonts/ogham)
 
-        .position-label {
-            position: absolute;
-            bottom: -28px;
-            width: 100%;
-            text-align: center;
-            font-size: 10px;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-        }
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
 
-        .reading-area {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 10px;
-        }
 
-        .reading-card {
-            background-color: rgba(74, 14, 23, 0.2);
-            border-left: 3px solid var(--gold);
-            padding: 15px;
-            margin-bottom: 15px;
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
+—————————————————————————————-
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+—————————————————————————————-
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
 
-        .reading-title {
-            color: var(--gold);
-            font-size: 16px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
 
-        .reading-card-name {
-            font-style: italic;
-            margin-bottom: 8px;
-            color: var(--parchment-light);
-        }
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
 
-        .reading-meaning {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-muted);
-        }
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
 
-        .btn-synthesize {
-            width: 100%;
-            background-color: var(--burgundy);
-            color: var(--parchment-light);
-            padding: 15px;
-            font-size: 16px;
-            margin-top: 20px;
-            display: none; 
-        }
-    </style>
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting — in part or in whole — any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+-->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%230b0703%22%2F%3E%3Cpath%20d%3D%22M12%2026V6l10%206-10%206m0-6%208-5%22%20fill%3D%22none%22%20stroke%3D%22%23e8c060%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<meta name="description" content="Cast Elder Futhark runes, draw Tarot cards, and explore the Ogham grove.">
 </head>
 <body>
-
-    <button id="audioToggle" class="btn-audio" onclick="toggleAmbience()">🔈 Ambience</button>
-
-    <h1>Arcanum Oracle</h1>
-    
-    <div class="intention-box">
-        <label for="questionInput">The Focus</label>
-        <input type="text" id="questionInput" placeholder="What seeks clarity?">
+<noscript><p style="padding:1rem;color:#f0e2c0;background:#30170a">Open this app in your browser with JavaScript enabled to cast and read.</p></noscript>
+  <div class="ornament" style="top:1rem;left:1rem" id="orn-tl">ᚦ</div>
+  <div class="ornament" style="top:1rem;right:1rem" id="orn-tr">ᚨ</div>
+  <div class="ornament" style="bottom:1rem;left:1rem" id="orn-bl">ᛟ</div>
+  <div class="ornament" style="bottom:1rem;right:1rem" id="orn-br">ᛏ</div>
+  <div class="container">
+    <header>
+      <div class="hdr-runes" id="hdr-runes">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ</div>
+      <h1 id="app-title">The Rune Cast</h1>
+      <div class="subtitle" id="app-subtitle">Elder Futhark · Seek What the Norns Weave</div>
+    </header>
+    <div class="divider">᛭ ᛭ ᛭</div>
+    <div class="sys-tabs" role="group" aria-label="Divination system">
+      <button class="sys-tab" id="tab-runes" onclick="selectSystem('runes')"><span class="sys-sym">ᚠ</span>Runes</button>
+      <button class="sys-tab" id="tab-tarot" onclick="selectSystem('tarot')"><span class="sys-sym">✦</span>Tarot</button>
+      <button class="sys-tab" id="tab-ogham" onclick="selectSystem('ogham')"><span class="sys-sym">ᚁ</span>Ogham</button>
     </div>
-
-    <div class="controls">
-        <button onclick="drawSpread('single')">Single Card</button>
-        <button onclick="drawSpread('three')">3-Card Spread</button>
-        <button onclick="drawSpread('celtic')">Celtic Cross</button>
+    <div class="panel">
+      <label class="panel-lbl" for="question">᛭ Set Your Intention</label>
+      <textarea id="question" placeholder="Write an optional intention. It will appear with your reading for reflection; the draw remains random." rows="3"></textarea>
     </div>
-
-    <div class="spread-container" id="spreadContainer">
-        <!-- Cards injected via JS -->
+    <div class="panel">
+      <div class="panel-lbl">᛭ Choose Your Spread</div>
+      <div class="spread-options" id="spread-options"></div>
     </div>
-
-    <div class="reading-area" id="readingArea">
-        <!-- Text interpretations injected via JS -->
+    <button class="cast-btn" id="cast-btn" disabled onclick="castCards()">ᚨ Cast the Runes ᚨ</button>
+    <div id="card-display" class="hidden">
+      <div class="divider" style="margin-top:1.2rem;margin-bottom:.3rem">᛫ ᛫ ᛫</div>
+      <div id="rune-spread" class="rune-spread"></div>
+      <div id="blot-desc" class="hidden" aria-live="polite"></div>
+      <button class="reveal-btn" id="reveal-btn" disabled onclick="handleReveal()">ᛟ Reveal the Reading ᛟ</button>
     </div>
-    
-    <button class="btn-synthesize" id="btnSynthesize" onclick="generateAIReading()">Copy Spread for AI Synthesis</button>
+    <div id="reading-display" class="hidden">
+      <div class="reading-panel">
+        <div class="panel-lbl" id="reading-lbl">᛭ The Reading</div>
+        <div id="reading-intention" class="hidden"></div><div id="reading-content"></div>
+      </div>
+    </div>
+    <p id="cast-status" class="sr-only" role="status"></p>
+    <button class="reset-btn hidden" id="reset-btn" onclick="resetAll()">᛫ Cast Again ᛫</button>
+  </div>
 
-    <script>
-        // Audio Setup
-        const flipAudio = new Audio('flip.mp3');
-        flipAudio.preload = 'auto';
-        
-        document.body.addEventListener('touchstart', function() {
-            flipAudio.load();
-        }, { once: true });
+<script>
+// ─── RUNE DATA ────────────────────────────────────────────────────────────────
+const RUNES=[
+  {id:1,sym:"ᚠ",name:"Fehu",up:"Wealth, abundance, earned fortune, new beginnings",rv:"Loss, greed, stagnation, squandered potential",cr:true,eu:"Fehu marks the moment abundance begins to move toward you — not as inheritance, but as the fruit of your own will and effort. Resources are flowing, beginnings are fertile, and what you plant now carries genuine momentum. Tend carefully to what arrives; wealth that stagnates turns to burden.",er:"Something of value is draining away — through carelessness, greed, or misaligned effort. Fehu reversed asks where you are grasping too tightly, or spending what hasn't yet arrived. Take stock before the loss becomes irreversible."},
+  {id:2,sym:"ᚢ",name:"Uruz",up:"Primal strength, vitality, raw force, courage",rv:"Weakness, misdirected energy, missed opportunity",cr:true,eu:"The aurochs does not negotiate. Uruz speaks to the raw force available to you now — primal vitality, physical and spiritual endurance, the power that comes before refinement. Something that has been waiting in you is ready to break forward. Trust the instinct, not the hesitation.",er:"Strength is present but misdirected, or suppressed by circumstance or self-doubt. Uruz reversed asks what is holding your force in check. The energy is there — it may simply need a different channel, or the courage to acknowledge it."},
+  {id:3,sym:"ᚦ",name:"Thurisaz",up:"Protected threshold, directed force, contemplation before action",rv:"Recklessness, danger, vulnerability to hidden enemies",cr:true,eu:"You stand at a threshold, and Thurisaz guards it. Before you push forward, this rune demands honest contemplation — not delay born of fear, but the deliberate pause of a warrior who knows the weight of what they're about to step into. Directed force is devastating; undirected force destroys the one who wields it.",er:"Recklessness is near, or already in motion. Thurisaz reversed warns of action taken before thought, of vulnerability to forces you haven't yet identified. Something you've dismissed as harmless may not be. Pause before you cross."},
+  {id:4,sym:"ᚨ",name:"Ansuz",up:"Odin's wisdom, divine inspiration, truth revealed",rv:"Miscommunication, deception, blocked insight",cr:true,eu:"Odin speaks in riddles because truth too clearly stated calcifies into dogma. Ansuz is the rune of revelation — wisdom arriving through the unexpected: a conversation, a dream, a line in a book. Pay attention to what seems accidental right now. The message is already in transit.",er:"Communication is tangled or actively misleading. Someone may be saying one thing and meaning another, or you yourself may be speaking from something other than your own truth. Ansuz reversed asks you to wait before acting on what you've been told."},
+  {id:5,sym:"ᚱ",name:"Raidho",up:"Journey, right action, the proper path, movement",rv:"Stagnation, disruption, the wrong path chosen",cr:true,eu:"The wheel turns and you are on it — Raidho signals movement on the right path, the satisfying rhythm of effort meeting intention. Whether a literal journey or an internal one, you are heading somewhere real. Trust the road; it knows where it leads.",er:"Progress is stalled, or you are moving fast in the wrong direction. Raidho reversed does not always mean stop — it means look up and verify. A small course correction now prevents a significant detour later."},
+  {id:6,sym:"ᚲ",name:"Kenaz",up:"Torch of knowledge, craft, clarity, creative fire",rv:"Ignorance, false light, the flame extinguished",cr:true,eu:"Kenaz is the controlled flame — the craftsperson's forge, the light held steady in the dark. You have access to real skill and real clarity right now; something you know how to do is available to you with unusual precision. This is a moment for craft, creation, and the kind of work that leaves something behind.",er:"The flame has guttered or is pointed at the wrong thing. Kenaz reversed speaks to skill applied without care, or light that illuminates what you'd rather not see. There may be ignorance here — not stupidity, but an active preference not to know."},
+  {id:7,sym:"ᚷ",name:"Gebo",up:"Sacred gift, partnership, generous exchange, balance",rv:null,cr:false,eu:"Every gift creates a bond, and Gebo asks you to be conscious of what you give and receive. Something of genuine value is in exchange right now — a partnership, a favor, an offering. The balance of this exchange matters. Neither party should leave diminished.",er:null},
+  {id:8,sym:"ᚹ",name:"Wunjo",up:"Joy, fellowship, harmony, a wish fulfilled",rv:"Sorrow, alienation, frenzy, longing unfulfilled",cr:true,eu:"Joy is not decoration — it is information. Wunjo signals that you are, or are about to be, genuinely aligned with something that belongs to you. A sense of fellowship, completion, or rightness is available here. Do not deflect it. This is what it feels like when the path is correct.",er:"The harmony has fractured, or the joy is being actively suppressed. Wunjo reversed may point to alienation — from others, from yourself, from what you once wanted. The grief here is real, and grief is a signal: it points back toward what mattered."},
+  {id:9,sym:"ᚺ",name:"Hagalaz",up:"Disruption, hail, forces beyond control, transformation through trial",rv:null,cr:false,eu:"The hailstorm does not ask permission. Hagalaz marks the arrival of disruption you did not invite and cannot fully control — but these forces are not malicious, only impersonal. What they break needed breaking, even if you could not have chosen it yourself. Endure. The pattern that emerges on the other side is genuinely new.",er:null},
+  {id:10,sym:"ᚾ",name:"Nauthiz",up:"Need-fire, constraint, the necessity that shapes growth",rv:"Grinding constraint, denial, unresolved inner conflict",cr:true,eu:"Need is a teacher who does not stop until the lesson is learned. Nauthiz points to constraint — genuine, pressing, unavoidable — but constraint is also the form in which growth most often arrives. What is being demanded of you right now is not punishment; endure it consciously and something real will be forged.",er:"The constraint has become suffocating, or you are refusing a need you know is real. Nauthiz reversed asks what you are denying and at what cost. Inner conflict unresolved eventually surfaces as external problem."},
+  {id:11,sym:"ᛁ",name:"Isa",up:"Ice, stillness, preservation, clarity through cold patience",rv:null,cr:false,eu:"Everything has stilled. Isa is not inertia — it is the preservation of winter, the clarity that comes when all movement stops and only the essential remains. You may feel frozen, but beneath the ice the roots are intact. Wait with intention rather than anxiety.",er:null},
+  {id:12,sym:"ᛃ",name:"Jera",up:"Harvest, right timing, reward for patient effort, the turning year",rv:null,cr:false,eu:"The year turns and the harvest arrives — not as surprise, but as the completion of what was planted with care and tended with patience. Jera is the rune of right timing: effort has been made, the cycle is completing, and what is due to you is arriving. Do not rush the harvest.",er:null},
+  {id:13,sym:"ᛇ",name:"Eihwaz",up:"Yew tree, endurance, the world axis, initiation and rebirth",rv:null,cr:false,eu:"The yew tree lives where others die — roots in death, crown in light. Eihwaz is the axis around which transformation turns: initiation, the crossing of thresholds, the endurance required to pass from one state of being to another. You are not who you were. That is not loss.",er:null},
+  {id:14,sym:"ᛈ",name:"Perthro",up:"Hidden fate, the Well of Wyrd, mystery, what is unknown",rv:"Secrets turned against you, stagnation in darkness",cr:true,eu:"Perthro is the dice cup upturned — fate in motion before the outcome settles. You are in the territory of genuine mystery now, where the threads have not yet resolved into pattern. Something hidden is moving toward the surface. Do not force its shape; let it arrive.",er:"Hidden forces are working against you, or what has been concealed is becoming weaponized. Perthro reversed speaks to secrets that cut, to luck turning cold, to a pattern of avoidance that has become its own trap. What are you refusing to look at?"},
+  {id:15,sym:"ᛉ",name:"Algiz",up:"Divine protection, sanctuary, the guardian presence",rv:"Protection withdrawn, hidden danger, vulnerability exposed",cr:true,eu:"The elk stands at the edge of the sacred enclosure, and you are within it. Algiz marks a moment of genuine protection — something watches over this situation, whether that is your own instinct, an ancestor's influence, or something older. You are safer than you feel.",er:"The protection has thinned. Algiz reversed does not mean you are under attack, but that you are exposed in ways worth attending to. Your defenses may be lowered, your discernment clouded. Move carefully; something here wants more of you than it deserves."},
+  {id:16,sym:"ᛊ",name:"Sowilo",up:"Sun, victory, wholeness, clarity of will, divine energy",rv:null,cr:false,eu:"The sun does not argue its right to shine. Sowilo is victory, wholeness, the clear burning of will aligned with purpose. What has been obscured is illuminated now. The force available to you is considerable — this is not the moment for hesitation or false modesty.",er:null},
+  {id:17,sym:"ᛏ",name:"Tiwaz",up:"Tyr's justice, honor, sacrifice for what is right, earned victory",rv:"Broken oath, injustice, cowardice, imbalance",cr:true,eu:"Tyr gave his hand so that the wolf could be bound — this is what justice costs. Tiwaz asks whether you are willing to pay the price of what is right, not merely what is convenient or safe. Earned victory awaits, but it requires sacrifice made with open eyes.",er:"The oath has been broken, or is in danger of breaking. Tiwaz reversed points to injustice — done to you or by you — and to the cost of cowardice dressed as pragmatism. Something that should have been stood for was not."},
+  {id:18,sym:"ᛒ",name:"Berkano",up:"Birth, new growth, the nurturing mother, gentle beginnings",rv:"Sterility, failed growth, stifled potential",cr:true,eu:"The birch is the mother tree, and Berkano speaks of beginning at the root level — new life, new growth, the tender and the possible. Something is being born into being right now. Treat it with the care you would give anything that has not yet had time to grow strong.",er:"Growth has been blocked, or the nurturing has curdled into smothering. Berkano reversed asks what has been prevented from becoming itself — a project, a relationship, a part of you. Stagnation here has a name."},
+  {id:19,sym:"ᛖ",name:"Ehwaz",up:"Horse and rider, trust, partnership, forward movement",rv:"Betrayal, broken trust, restlessness, reckless haste",cr:true,eu:"The horse and rider are one when the trust is real. Ehwaz speaks to movement through partnership — not domination, but genuine cooperation between two forces that work better together than apart. Something is moving forward because you are not moving alone.",er:"Trust has fractured somewhere, or speed has overtaken judgment. Ehwaz reversed may indicate a partnership carrying more tension than it should, or progress being made for its own sake in the wrong direction. Slow down and reconnect."},
+  {id:20,sym:"ᛗ",name:"Mannaz",up:"The human self, community, rational mind, what we share",rv:"Self-delusion, isolation, the enemy within",cr:true,eu:"You are human, which means you are capable of extraordinary things precisely because you are also fallible. Mannaz asks you to engage with others as full human beings — to think clearly, act communally, and remember that intelligence without compassion is a narrower tool than either alone.",er:"The self is turned against itself, or isolation has become a way of protecting wounds rather than healing them. Mannaz reversed speaks to the enemy within — the voice that undermines before outside forces even have the chance."},
+  {id:21,sym:"ᛚ",name:"Laguz",up:"Water, flowing intuition, the unconscious depths",rv:"Fear of the depths, poor judgment, drawn under the current",cr:true,eu:"The water does not force its way — it finds. Laguz invites you to trust the intuition that has been speaking beneath the noise, the knowledge that lives in the body rather than the mind. The unconscious depths have something to show you. Let yourself sink enough to see it.",er:"The current has turned against you, or you are refusing to enter the water at all. Laguz reversed points to fear of depth, to judgment clouded by avoidance, to the pull of something you'd rather not acknowledge. The depths do not disappear because you stay onshore."},
+  {id:22,sym:"ᛜ",name:"Ingwaz",up:"Fertile potential, gestation, internal growth, the resting seed",rv:null,cr:false,eu:"The seed contains the entire tree in potential, and it knows precisely when to crack open. Ingwaz speaks to gestation — the quiet internal work that precedes any visible result. Do not mistake silence for inactivity. Something is becoming itself at a level you cannot yet observe.",er:null},
+  {id:23,sym:"ᛞ",name:"Dagaz",up:"Breakthrough dawn, transformation, the liminal threshold, awakening",rv:null,cr:false,eu:"The moment between darkness and light is neither — it is both. Dagaz marks transformation happening now, the liminal instant that belongs to no before or after. A breakthrough is occurring or has just occurred. The world you are stepping into is not the one you left.",er:null},
+  {id:24,sym:"ᛟ",name:"Othala",up:"Ancestral home, lineage, sacred inheritance, belonging",rv:"Rootlessness, severed lineage, clinging to what must be released",cr:true,eu:"The sacred enclosure holds what is yours by lineage and by labor — your inheritance, your land, the bones of your ancestors beneath you. Othala asks you to know where you come from and to honor it, even as you move beyond it. The roots do not constrain; they make the reach possible.",er:"Something about lineage or belonging is in fracture. Othala reversed may speak to rootlessness — the feeling of not knowing where home is — or to an attachment to the past that prevents the present from being inhabited. What must be released so you can take what is actually yours?"},
+];
 
-        const ambientAudio = new Audio('ambience.mp3');
-        ambientAudio.loop = true;
-        ambientAudio.volume = 0.4;
-        let isAmbiencePlaying = false;
+// ─── TAROT DATA ───────────────────────────────────────────────────────────────
+const SUIT_SYMS={wands:"♣",cups:"♥",swords:"♠",pentacles:"♦"};
+const SUIT_COLS={wands:"#f0a040",cups:"#90aae0",swords:"#c0c8d4",pentacles:"#80c060"};
+const TAROT=[
+  {id:100,name:"The Fool",arcana:"major",rank:"0",up:"New beginnings, spontaneity, innocence",rv:"Recklessness, naivety, poor judgment",eu:"The Fool steps off the edge not from stupidity but from trust — the willingness to begin without guarantees. Something new is available to you, and the only way to find out what it is involves a step that cannot be fully calculated first. What you're about to do may look foolish to others; that is not a warning.",er:"Recklessness is dressed as spontaneity, or fear is dressed as wisdom. The Fool reversed asks you to examine what's really driving the leap — or what's really preventing it."},
+  {id:101,name:"The Magician",arcana:"major",rank:"I",up:"Manifestation, skill, willpower",rv:"Manipulation, untapped potential",eu:"Every tool you need is already in front of you — the question is whether you believe that. The Magician marks a moment of genuine capacity, where skill, will, and opportunity have converged. Use this moment; it will not wait indefinitely.",er:"The capacity is there but something is misdirecting it — self-doubt, manipulation, or talent going to waste. The Magician reversed asks what is preventing full application of what you actually know how to do."},
+  {id:102,name:"The High Priestess",arcana:"major",rank:"II",up:"Intuition, mystery, inner knowing",rv:"Secrets withheld, disconnection from intuition",eu:"She doesn't speak until spoken to directly, which means the information you need right now isn't in any external source. The High Priestess asks you to stop consulting what others think and listen for what you already know. The answer is quieter than everything around it.",er:"Something is being hidden — possibly from yourself, possibly by another. The High Priestess reversed speaks to surface-level understanding substituting for real knowledge, or to intuition being talked out of itself."},
+  {id:103,name:"The Empress",arcana:"major",rank:"III",up:"Abundance, nurturing, fertility, creativity",rv:"Creative block, dependence, smothering",eu:"Abundance is available now, but only through engagement rather than forcing. The Empress speaks to fertility of all kinds — creative, relational, material — and to the quality of patient attention that allows things to grow into themselves. Tend what you have planted.",er:"Creativity is blocked or care has become suffocation. The Empress reversed may point to over-nurturing, or to a drought of the very life force that makes growth possible."},
+  {id:104,name:"The Emperor",arcana:"major",rank:"IV",up:"Authority, structure, stability",rv:"Tyranny, rigidity, domination",eu:"Structure is not constraint — it is the form inside which real ambition can survive long enough to succeed. The Emperor asks you to build something that holds, to take responsibility for what is within your authority, to govern with discipline what you have been given.",er:"Control has tipped into rigidity or domination. The Emperor reversed may speak to an authority that has become tyrannical — outside you or within — or to structure used as avoidance of necessary change."},
+  {id:105,name:"The Hierophant",arcana:"major",rank:"V",up:"Tradition, spiritual guidance, convention",rv:"Rebellion, subversion, blind conformity",eu:"There is wisdom in the lineage, in what has been tested and passed down across generations. The Hierophant offers access to tradition not as dead weight but as earned knowledge — a teacher, an institution, or an established path may hold more than it appears to.",er:"The convention no longer fits, and following it out of habit is costing you. The Hierophant reversed asks whether you are conforming to something that was never truly yours, or whether rebellion itself has become its own kind of conformity."},
+  {id:106,name:"The Lovers",arcana:"major",rank:"VI",up:"Union, alignment of values, meaningful choice",rv:"Disharmony, imbalance, misaligned values",eu:"A choice is before you that cannot be made by intellect alone — it requires alignment with your deepest values. The Lovers is about commitment to what is truly yours, whether a person, a path, or a version of yourself. What you choose here, you become.",er:"Values are misaligned somewhere, or a choice is being avoided at cost. The Lovers reversed speaks to disharmony between what you say you want and what you're actually moving toward."},
+  {id:107,name:"The Chariot",arcana:"major",rank:"VII",up:"Determination, victory, willpower, control",rv:"Lack of control, aggression, opposition",eu:"You have the will and you have the momentum — the question is whether you can hold opposing forces in check long enough to reach the destination. The Chariot demands focused authority over yourself before it asks anything of external circumstances. Victory is available through discipline.",er:"The reins have slipped, or aggression is substituting for control. The Chariot reversed speaks to force applied in multiple conflicting directions — motion that exhausts without arriving anywhere."},
+  {id:108,name:"Strength",arcana:"major",rank:"VIII",up:"Courage, patience, inner power",rv:"Self-doubt, weakness, insecurity",eu:"Real courage is not the absence of fear — it is the willingness to continue despite it. Strength asks you to approach what is difficult with patience and inner authority rather than force. The lion yields not to power but to calm certainty.",er:"Self-doubt has taken the wheel, or raw force is being applied where steadiness was needed. Strength reversed asks what you don't trust about yourself right now, and whether that distrust is earned."},
+  {id:109,name:"The Hermit",arcana:"major",rank:"IX",up:"Solitude, inner wisdom, soul-searching",rv:"Isolation, loneliness, withdrawal",eu:"The wisdom you need right now is not crowd-sourced. The Hermit marks a period of necessary solitude — not isolation as avoidance, but withdrawal as honest examination. The lantern lights only the next step, not the whole road.",er:"Withdrawal has become hiding, or the solitude that was meant to restore has become the prison. The Hermit reversed may speak to an unwillingness to re-emerge, or to guidance that has led somewhere unhelpful."},
+  {id:110,name:"Wheel of Fortune",arcana:"major",rank:"X",up:"Cycles, fate, turning point",rv:"Bad luck, resistance to change, disorder",eu:"The wheel is turning and the position you're in is changing — this card speaks to the inexorable movement of cycles, to the fact that what is up will come down and what is down will rise again. You are not at the mercy of this; you are part of it.",er:"The cycle is stuck, or you are resisting its natural movement. The Wheel reversed may speak to bad luck as accumulated consequence, or to the failure to recognize that the wheel is actually turning in your favor."},
+  {id:111,name:"Justice",arcana:"major",rank:"XI",up:"Fairness, truth, cause and effect",rv:"Injustice, dishonesty, lack of accountability",eu:"What is due will arrive — this is the promise and the warning of Justice. Cause and effect are operating with precision here, and the account is being settled. Act with integrity, because the ledger is open and the hand that writes it is not yours.",er:"The scales are tilted — by circumstance, by someone else, or by self-deception. Justice reversed does not mean fairness is impossible; it means someone has to name the imbalance before it can be corrected."},
+  {id:112,name:"The Hanged Man",arcana:"major",rank:"XII",up:"Pause, surrender, new perspective",rv:"Resistance, stagnation, indecision",eu:"Surrender is not defeat — it is the voluntary release of the grip that was preventing a different view. The Hanged Man asks you to stop fighting the pause and to look at what this strange angle actually reveals. The waiting is the point.",er:"The pause has become stagnation, or sacrifice is being made that yields nothing. The Hanged Man reversed may speak to pushing through at cost, or to a surrender that has hollowed out rather than illuminated."},
+  {id:113,name:"Death",arcana:"major",rank:"XIII",up:"Transformation, endings, necessary transition",rv:"Resistance to change, stagnation, decay",eu:"Something real is ending, and the pretense that it isn't costs more than the loss itself. Death does not arrive as punishment but as the wheel completing its turn. What releases here was already over; what arrives requires the space you are being asked to make.",er:"The ending is being resisted past the point where resistance serves you. Death reversed speaks to decay that continues because nothing is willing to let go — of a relationship, a role, an idea of yourself that the evidence no longer supports."},
+  {id:114,name:"Temperance",arcana:"major",rank:"XIV",up:"Balance, patience, moderation",rv:"Imbalance, excess, self-indulgence",eu:"The angel pours water between the cups and the temperature is exactly right — this is the patience of Temperance, the capacity to modulate rather than force. Balance is not the absence of extremes but the ability to move between them without spilling. You are closer to equilibrium than you think.",er:"Excess in some direction has disrupted the flow — too much, too fast, or two things that genuinely don't mix. Temperance reversed asks where proportion has been lost and what returning to it might actually look like."},
+  {id:115,name:"The Devil",arcana:"major",rank:"XV",up:"Bondage, shadow self, materialism",rv:"Release, reclaiming power, breaking free",eu:"The chains on the Devil card are loose — they could be removed. What you are bound to right now is binding with your own consent, even if that consent was given without full awareness. This card asks you to name the thing honestly before you try to move past it.",er:"The chains are loosening, or you are beginning to see them for what they are. The Devil reversed marks a moment of awakening to what has been controlling you — and with that recognition, genuine movement becomes possible."},
+  {id:116,name:"The Tower",arcana:"major",rank:"XVI",up:"Upheaval, sudden change, revelation",rv:"Avoidance of disaster, fear of change",eu:"What is built on a false foundation cannot stand, and the Tower is the moment that becomes undeniable. This card does not predict ruin — it predicts clarity, arriving in a form you didn't choose. What falls was already unsound. What remains is what was real.",er:"The collapse is being avoided or delayed, but not prevented. The Tower reversed may speak to a disaster narrowly escaped, or to a necessary upheaval being suppressed until the pressure finds a worse moment to release."},
+  {id:117,name:"The Star",arcana:"major",rank:"XVII",up:"Hope, renewal, serenity, faith",rv:"Despair, lack of faith, discouragement",eu:"After the storm, the Star. Serenity is available to you now — not as escape from difficulty but as genuine renewal, the sense of being held by something larger than the immediate situation. Let yourself be restored. Hope is not naive here; it is accurate.",er:"Hope has been depleted or faith in a better outcome has collapsed. The Star reversed speaks to discouragement that has gone deep, to a loss of the sense that things can change. The stars are still there even when you can't see them."},
+  {id:118,name:"The Moon",arcana:"major",rank:"XVIII",up:"Illusion, fear, the unconscious",rv:"Release of fear, clarity beginning to emerge",eu:"Not everything you're seeing right now is what it appears to be. The Moon illuminates the unconscious terrain — the fears, the projections, the things that have been swimming below the surface of your awareness. Pay attention to what you feel, not just what you think.",er:"The fog is beginning to clear, and what was obscuring your vision is losing its power. The Moon reversed can mark the moment when confusion resolves, when the fear that seemed overwhelming reveals its actual size."},
+  {id:119,name:"The Sun",arcana:"major",rank:"XIX",up:"Success, joy, vitality, clarity",rv:"Temporary setback, negativity, inner child blocked",eu:"This is the card of genuine good things — joy that is not borrowed, success that is real, the sense of being exactly where you are supposed to be at exactly the right time. The Sun does not qualify or condition its light. Receive this without deflecting it.",er:"The light is dimmer than it should be — not absent, but occluded. The Sun reversed speaks to temporary setback, to joy being blocked by circumstance or self-sabotage, to the warmth that is there but being refused."},
+  {id:120,name:"Judgement",arcana:"major",rank:"XX",up:"Reflection, awakening, reckoning",rv:"Self-doubt, refusing the call, self-judgment",eu:"A calling is arriving — not ambition, but a genuine summons toward something that asks more of you than you have previously given. Judgement asks whether you are willing to rise in response, to be who you are actually capable of being rather than who you have settled for being.",er:"The call is going unanswered, or the reckoning is being postponed. Judgement reversed speaks to the weight of unforgiven things — self-judgment most of all — and to the refusal of a summons that knows your name."},
+  {id:121,name:"The World",arcana:"major",rank:"XXI",up:"Completion, integration, wholeness",rv:"Incompletion, no closure, emptiness",eu:"This is completion — not the end, but the fullness of a cycle genuinely fulfilled. The World speaks to integration, to the moment when all the disparate pieces cohere into something recognizably whole. What you have been working toward has arrived, or is arriving now.",er:"Completion is being blocked or has been narrowly missed. The World reversed speaks to cycles that have not quite closed, to the sensation of being almost there but not yet arriving — and to what still needs to be resolved before the threshold can be crossed."},
+  {id:122,name:"Ace of Wands",arcana:"minor",suit:"wands",rank:"ACE",up:"Creative spark, new venture, inspiration",rv:"Delays, missed opportunity, lack of direction",eu:"A spark has landed — creative, ambitious, alive with potential. Act on it before it requires stoking; this kind of ignition doesn't wait.",er:"The spark is there but something is dampening it. Find what's blocking the ignition before the window closes."},
+  {id:123,name:"Two of Wands",arcana:"minor",suit:"wands",rank:"2",up:"Planning, progress, future vision",rv:"Fear of unknown, indecision, playing it safe",eu:"You are standing at the edge of a larger world, holding a map you've only partially drawn. The vision is real; now comes the commitment to see it through.",er:"The vision exists but the will to act on it has stalled. Examine whether what's stopping you is wisdom or fear."},
+  {id:124,name:"Three of Wands",arcana:"minor",suit:"wands",rank:"3",up:"Expansion, foresight, overseas ventures",rv:"Obstacles, delays, frustration",eu:"The ships have launched and you're watching the horizon for what returns. Patience here is not passivity — it is the alert waiting of someone who has already done the hard work.",er:"Something promised hasn't arrived, or the timing has gone wrong. Reassess what was sent out and why it hasn't returned."},
+  {id:125,name:"Four of Wands",arcana:"minor",suit:"wands",rank:"4",up:"Celebration, harmony, homecoming, milestone",rv:"Instability, lack of support, discord",eu:"A genuine milestone has been reached and the celebration is not frivolous — it acknowledges that real work produces real results. Mark this moment before moving to the next.",er:"A harmony that should exist is fragile or absent. What is preventing the sense of homecoming this moment should provide?"},
+  {id:126,name:"Five of Wands",arcana:"minor",suit:"wands",rank:"5",up:"Conflict, competition, disagreement",rv:"Avoiding conflict, release of tension",eu:"Friction and competition are generating energy — not necessarily destructive, but requiring you to hold your ground without losing your head. The conflict has something to teach.",er:"The conflict is either being avoided at cost or has finally eased. Either way, notice what the tension was actually about."},
+  {id:127,name:"Six of Wands",arcana:"minor",suit:"wands",rank:"6",up:"Victory, public recognition, success",rv:"Ego, fall from grace, seeking validation",eu:"Recognition has arrived — earned, visible, real. Receive it without either dismissing it or being consumed by it.",er:"The victory was hollow, or acclaim is being sought at the expense of what actually matters. Recheck what success means to you."},
+  {id:128,name:"Seven of Wands",arcana:"minor",suit:"wands",rank:"7",up:"Challenge, perseverance, holding your ground",rv:"Overwhelm, giving up, exhaustion",eu:"You are being challenged from multiple directions and holding your position requires real effort. Keep standing your ground — the position is worth defending.",er:"The defense is exhausting and may no longer be necessary. Ask whether what you're protecting still warrants the energy it's costing."},
+  {id:129,name:"Eight of Wands",arcana:"minor",suit:"wands",rank:"8",up:"Speed, movement, swift action, news",rv:"Delays, frustration, internal conflict",eu:"Everything is moving fast — news, decisions, momentum — and the direction is good. This is not the moment to slow down out of caution.",er:"The momentum has hit friction, or too many things are moving in conflicting directions at once. Slow down and sort before proceeding."},
+  {id:130,name:"Nine of Wands",arcana:"minor",suit:"wands",rank:"9",up:"Resilience, persistence, close to the end",rv:"Exhaustion, giving up, paranoia",eu:"You have taken more hits than expected and are still standing. The finish line is close — this is not the moment to abandon a post you've held this long.",er:"Exhaustion has turned into obstinacy or paranoia. What are you guarding that no longer needs guarding?"},
+  {id:131,name:"Ten of Wands",arcana:"minor",suit:"wands",rank:"10",up:"Burden, overwork, responsibility, nearing release",rv:"Release, offloading, inability to delegate",eu:"The burden is real but nearly complete. The weight you're carrying belongs to a chapter that is ending — set it down as soon as you can.",er:"The weight is too much and you know it. What responsibility was never yours to carry?"},
+  {id:132,name:"Page of Wands",arcana:"minor",suit:"wands",rank:"PAGE",up:"Exploration, enthusiasm, free spirit",rv:"Immaturity, lack of direction, reckless",eu:"Something genuinely new and alive is beginning — follow the curiosity before the rational mind talks it out of existence.",er:"Energy without direction produces noise. Find the channel before lighting the fuse."},
+  {id:133,name:"Knight of Wands",arcana:"minor",suit:"wands",rank:"KNT",up:"Action, adventure, fearless energy",rv:"Anger, impulsiveness, recklessness",eu:"Act decisively and with full commitment — the moment rewards boldness and punishes hesitation.",er:"The speed has outrun the judgment. What damage has been left in the wake of the rush?"},
+  {id:134,name:"Queen of Wands",arcana:"minor",suit:"wands",rank:"QUE",up:"Courage, confidence, determination, warmth",rv:"Jealousy, insecurity, aggression",eu:"Your confidence and warmth are genuine assets right now — lead from that center and others will follow naturally.",er:"The fire has become aggressive or insecure. What is underneath the edge?"},
+  {id:135,name:"King of Wands",arcana:"minor",suit:"wands",rank:"KING",up:"Leadership, vision, entrepreneur, bold",rv:"Impulsive, domineering, arrogant",eu:"Vision and will are aligned — you know what you're building and you have the authority to build it. Use it.",er:"The leadership has become domineering or the ambition has untethered from ethics. What is being steamrolled?"},
+  {id:136,name:"Ace of Cups",arcana:"minor",suit:"cups",rank:"ACE",up:"New love, compassion, creativity, emotional gift",rv:"Emotional loss, blocked feelings, emptiness",eu:"Something is opening in the emotional field — love, creativity, compassion, a new way of feeling that hasn't been accessible before. Let it arrive without immediately analyzing it.",er:"The emotional openness is blocked or spilling in the wrong direction. What is being dammed up that needs to flow?"},
+  {id:137,name:"Two of Cups",arcana:"minor",suit:"cups",rank:"2",up:"Partnership, attraction, mutual connection",rv:"Imbalance, broken communication, tension",eu:"A genuine connection is present — mutual, balanced, real. This is what it looks like when two people meet as equals.",er:"The balance in a connection has tipped. Who is giving more than they're receiving?"},
+  {id:138,name:"Three of Cups",arcana:"minor",suit:"cups",rank:"3",up:"Friendship, celebration, community, joy",rv:"Independence needed, overindulgence, isolation",eu:"Joy shared multiplies. Receive the community around you with full presence — this abundance is real.",er:"The celebration has curdled into excess, or withdrawal from community is coming at a cost."},
+  {id:139,name:"Four of Cups",arcana:"minor",suit:"cups",rank:"4",up:"Contemplation, apathy, reevaluation",rv:"Motivation returning, renewed purpose",eu:"You are in a reflective withdrawal, possibly missing something being offered because attention has turned inward. Look up occasionally.",er:"The apathy is lifting and motivation is returning. Move toward what you've been keeping at arm's length."},
+  {id:140,name:"Five of Cups",arcana:"minor",suit:"cups",rank:"5",up:"Loss, grief, focusing on what was lost",rv:"Acceptance, moving on, finding peace",eu:"The loss is real and the grief is legitimate. But there are cups still standing behind you — acknowledge the loss without losing sight of what remains.",er:"You are beginning to move past the grief and see what survived. This is not betrayal of what was lost."},
+  {id:141,name:"Six of Cups",arcana:"minor",suit:"cups",rank:"6",up:"Nostalgia, reunion, childhood, innocence",rv:"Living in the past, need to move forward",eu:"The past is offering something worth receiving — nostalgia with substance, a reunion, an old kindness revisited. Let the memory land.",er:"The past has a grip the present doesn't share. What are you returning to that can't actually be returned to?"},
+  {id:142,name:"Seven of Cups",arcana:"minor",suit:"cups",rank:"7",up:"Fantasy, many choices, illusion, wishful thinking",rv:"Alignment, clarity, sobriety, focus",eu:"Multiple compelling options are present but not all of them are real. Identify which vision will still matter when the enchantment fades.",er:"The fog of too many choices is clearing. The options have narrowed to something you can actually work with."},
+  {id:143,name:"Eight of Cups",arcana:"minor",suit:"cups",rank:"8",up:"Walking away, withdrawal, seeking more",rv:"Fear of moving on, aimlessness, stagnation",eu:"Something that gave meaning for a long time no longer does, and you know it. Walking away is not abandonment — it is honesty.",er:"You are staying somewhere you know you need to leave, or leaving without having identified why. Get clear before you move."},
+  {id:144,name:"Nine of Cups",arcana:"minor",suit:"cups",rank:"9",up:"Wish fulfilled, contentment, satisfaction",rv:"Greed, dissatisfaction, overindulgence",eu:"What you wished for has arrived or is arriving. This is genuine satisfaction — allow yourself to receive it fully.",er:"The satisfaction is superficial or the wish that was granted wasn't the right one. What would actually be enough?"},
+  {id:145,name:"Ten of Cups",arcana:"minor",suit:"cups",rank:"10",up:"Harmony, happy home, emotional fulfillment",rv:"Broken home, conflict, misaligned values",eu:"The emotional world is, in this moment, genuinely full. This is what it was all working toward — the real thing, not the idea of it.",er:"The happiness that should exist here is fractured by unresolved things. What needs to be named before peace becomes possible?"},
+  {id:146,name:"Page of Cups",arcana:"minor",suit:"cups",rank:"PAGE",up:"Creative opportunities, curiosity, intuitive news",rv:"Emotional immaturity, escapism, insecurity",eu:"Let the unexpected feeling arrive without immediately analyzing it. Something true is trying to surface through an unlikely channel.",er:"Sensitivity has tipped into manipulation or emotional immaturity. Ground the feeling before acting on it."},
+  {id:147,name:"Knight of Cups",arcana:"minor",suit:"cups",rank:"KNT",up:"Romance, charm, following the heart",rv:"Moodiness, disappointment, unrealistic",eu:"Follow the pull of what genuinely moves you — right now the emotional impulse is pointing somewhere real.",er:"The idealism has detached from reality, or charm is substituting for substance."},
+  {id:148,name:"Queen of Cups",arcana:"minor",suit:"cups",rank:"QUE",up:"Compassion, intuition, emotional security",rv:"Insecurity, emotional manipulation, co-dependency",eu:"Trust your emotional intelligence here — you are reading the room correctly and your compassion is a precision tool.",er:"Empathy has become entanglement, or emotional needs are being met through others in ways that aren't sustainable."},
+  {id:149,name:"King of Cups",arcana:"minor",suit:"cups",rank:"KING",up:"Emotional balance, wisdom, diplomacy",rv:"Emotional manipulation, moodiness, coldness",eu:"Emotional maturity and calm wisdom are your greatest assets in this situation — lead with those and not with reaction.",er:"The composure is a mask for something being suppressed. The coldness here costs everyone, including you."},
+  {id:150,name:"Ace of Swords",arcana:"minor",suit:"swords",rank:"ACE",up:"Clarity, truth, breakthrough, new idea",rv:"Confusion, brutality, chaos, false start",eu:"A truth is cutting through — sharp, clear, and inevitable. Receive the clarity even if it's uncomfortable; it is a more honest gift than continued uncertainty.",er:"The clarity is being obscured or weaponized. A new idea may be promising more than it can deliver."},
+  {id:151,name:"Two of Swords",arcana:"minor",suit:"swords",rank:"2",up:"Indecision, stalemate, avoidance",rv:"Indecision breaks, lies revealed, confusion",eu:"A decision is being deferred, and there is a reason for that — but the blindfold cannot stay on indefinitely. What information are you refusing to gather?",er:"The stalemate is breaking but the information coming in is complicated. Not everything being revealed is welcome."},
+  {id:152,name:"Three of Swords",arcana:"minor",suit:"swords",rank:"3",up:"Heartbreak, grief, sorrow, painful truth",rv:"Recovery, forgiveness, healing begins",eu:"This is a genuine wound — acknowledge it fully rather than diminishing it. Grief honored moves; grief denied stays.",er:"The healing is underway, though it may not feel like it yet. Forgiveness here is not absolution — it is release."},
+  {id:153,name:"Four of Swords",arcana:"minor",suit:"swords",rank:"4",up:"Rest, restoration, recovery, contemplation",rv:"Burnout, restlessness, unable to rest",eu:"Rest is not a reward — it is a prerequisite. This card grants permission to pause, to restore, to gather before the next round.",er:"The rest is being refused or is impossible to maintain. Burnout is close if it hasn't already arrived."},
+  {id:154,name:"Five of Swords",arcana:"minor",suit:"swords",rank:"5",up:"Conflict, defeat, hollow victory",rv:"Reconciliation, making amends, past regrets",eu:"A conflict has been lost or won at significant cost. Both hollow victory and bitter defeat ask the same question: what was this actually for?",er:"Old wounds from old conflicts are either healing or re-opening. Choose deliberately which."},
+  {id:155,name:"Six of Swords",arcana:"minor",suit:"swords",rank:"6",up:"Transition, leaving difficulty behind, travel",rv:"Unfinished business, carrying wounds forward",eu:"You are moving away from turbulence toward calmer water, and the movement is right even if it feels like leaving something behind. The passage is necessary.",er:"The departure is being delayed by what you're carrying. You cannot arrive at the new shore while towing the wreckage."},
+  {id:156,name:"Seven of Swords",arcana:"minor",suit:"swords",rank:"7",up:"Deception, strategy, acting alone",rv:"Confession, rethinking approach, conscience",eu:"Something is being handled alone, away from scrutiny — this may be strategy, or it may be avoidance. Know which.",er:"A deception is unraveling, whether yours or another's. The conscience is speaking; listen to it."},
+  {id:157,name:"Eight of Swords",arcana:"minor",suit:"swords",rank:"8",up:"Restriction, feeling trapped, powerlessness",rv:"Freedom, release, seeing the way out",eu:"The restriction is largely self-imposed — the blindfold and the bonds loosen when you stop believing they are permanent. The way out is a decision, not a rescue.",er:"The mental constraints are releasing and clarity is returning. Act on what you can now see."},
+  {id:158,name:"Nine of Swords",arcana:"minor",suit:"swords",rank:"9",up:"Anxiety, worry, nightmares, dread",rv:"Inner turmoil releasing, hope, reaching out",eu:"The worst hour is three in the morning, and this is it. But the catastrophe playing out in your mind is not the same as the one that actually exists. Name what is real.",er:"The crisis is at its peak and beginning to recede, or help is available that hasn't yet been asked for. You don't have to carry this alone."},
+  {id:159,name:"Ten of Swords",arcana:"minor",suit:"swords",rank:"10",up:"Painful ending, betrayal, loss, rock bottom",rv:"Recovery, survival, things can only improve",eu:"This is the bottom — genuinely. But a bottom is also a floor, and you are on it rather than beneath it. The only direction available from here is up.",er:"Survival is confirmed. You have come through something that was meant to finish you and did not."},
+  {id:160,name:"Page of Swords",arcana:"minor",suit:"swords",rank:"PAGE",up:"Curiosity, vigilance, mental agility, new ideas",rv:"Haste, manipulation, all talk no action",eu:"Curiosity and careful observation are your best tools right now — ask questions, gather information, but hold your conclusions lightly.",er:"The talk has run ahead of the action, or sharp words are being deployed without care for the cuts they leave."},
+  {id:161,name:"Knight of Swords",arcana:"minor",suit:"swords",rank:"KNT",up:"Ambitious, driven, decisive, action",rv:"Scattered, reckless, hasty decisions",eu:"Move fast and think clearly — the situation rewards decisiveness and punishes overthinking.",er:"The speed has become recklessness. Stop long enough to verify you're aimed at the right target."},
+  {id:162,name:"Queen of Swords",arcana:"minor",suit:"swords",rank:"QUE",up:"Sharp mind, direct, independent, perceptive",rv:"Cold, cruel, bitter, overly critical",eu:"Your ability to see clearly and speak directly is precisely what this moment needs. Do not soften what needs to be said.",er:"The sharpness has become cruelty, or grief has armored itself so thoroughly it cannot receive care."},
+  {id:163,name:"King of Swords",arcana:"minor",suit:"swords",rank:"KING",up:"Intellectual authority, truth, clear judgment",rv:"Manipulative, tyrannical, abusive of power",eu:"Lead with reason, integrity, and clear communication — authority here is earned by the quality of the thinking, not the volume of the voice.",er:"Intellect is being deployed as a weapon rather than a tool. What is the clarity being used to avoid feeling?"},
+  {id:164,name:"Ace of Pentacles",arcana:"minor",suit:"pentacles",rank:"ACE",up:"New financial opportunity, prosperity, abundance",rv:"Lost opportunity, poor planning, greed",eu:"A genuine opportunity for material growth is at hand — a new venture, an offer, a foundation waiting to be laid. The seed is real; plant it.",er:"The opportunity is present but the conditions for it to take root haven't been established. What needs to be prepared first?"},
+  {id:165,name:"Two of Pentacles",arcana:"minor",suit:"pentacles",rank:"2",up:"Balance, adaptability, juggling priorities",rv:"Overwhelmed, disorganized, financial imbalance",eu:"You are keeping multiple plates in the air and doing it well — but the balance requires continued attention. Don't automate what still needs your hand.",er:"The juggling has gotten ahead of what can be managed. Something will drop unless priorities are reorganized."},
+  {id:166,name:"Three of Pentacles",arcana:"minor",suit:"pentacles",rank:"3",up:"Teamwork, learning, craftsmanship",rv:"Lack of teamwork, disorganization, mediocrity",eu:"Skilled work done in collaboration is producing real results. This is what it looks like when the right people are building something together.",er:"The collaboration is breaking down, or the craft is being rushed. Quality requires alignment — find out where it's missing."},
+  {id:167,name:"Four of Pentacles",arcana:"minor",suit:"pentacles",rank:"4",up:"Security, conservation, holding what you have",rv:"Greed, over-spending, self-protection",eu:"Security is real and worth protecting, but security that becomes hoarding calcifies into its own kind of poverty. Hold what you have without choking it.",er:"The grip has loosened — either resources are escaping, or an unhealthy attachment to security is beginning to release."},
+  {id:168,name:"Five of Pentacles",arcana:"minor",suit:"pentacles",rank:"5",up:"Financial hardship, isolation, poverty",rv:"Recovery from loss, spiritual poverty ends",eu:"Real hardship is present — material, physical, or spiritual. But there is shelter available if you are willing to step through the door and ask.",er:"The worst of the hardship is passing, and resources or support are beginning to return."},
+  {id:169,name:"Six of Pentacles",arcana:"minor",suit:"pentacles",rank:"6",up:"Generosity, charity, sharing wealth and time",rv:"Debt, selfishness, one-sided giving",eu:"Generosity is operating in this situation — given or received. Attend to the quality of the exchange: generosity that creates dependency is something else.",er:"The giving is unbalanced — too much from one party, too little accountability from another."},
+  {id:170,name:"Seven of Pentacles",arcana:"minor",suit:"pentacles",rank:"7",up:"Patience, investment, long-term view, assessment",rv:"Impatience, lack of reward, diversion",eu:"The work is long and the return is not yet visible, but the investment is sound. Patience here is not passive — it is disciplined trust.",er:"The wait is yielding poor returns, or the investment of time and energy needs to be reassessed."},
+  {id:171,name:"Eight of Pentacles",arcana:"minor",suit:"pentacles",rank:"8",up:"Diligence, skill development, craftsmanship",rv:"Perfectionism, lack of ambition, sloppy work",eu:"Mastery is built in the repetition of single-minded work. This card asks you to honor the craft by showing up for it completely, day after day.",er:"The work has become mechanical or the quality has dropped. Reconnect to why the skill mattered before continuing."},
+  {id:172,name:"Nine of Pentacles",arcana:"minor",suit:"pentacles",rank:"9",up:"Abundance, luxury, self-sufficiency, refinement",rv:"Over-investment in work, superficial success",eu:"You have built something real and you are entitled to enjoy it. This is not vanity — it is the legitimate pleasure of self-sufficiency genuinely earned.",er:"The comfort has become compensation for something missing, or the success has cost more than it was worth."},
+  {id:173,name:"Ten of Pentacles",arcana:"minor",suit:"pentacles",rank:"10",up:"Legacy, family, lasting success, inheritance",rv:"Broken legacy, family discord, instability",eu:"Lasting abundance — not just for yourself, but across time. This card speaks to legacy, to what you are building that will outlast the immediate moment.",er:"The foundation has cracks, or what appeared to be lasting wealth is more fragile than it looked."},
+  {id:174,name:"Page of Pentacles",arcana:"minor",suit:"pentacles",rank:"PAGE",up:"Opportunity, ambition, diligent study",rv:"Lack of progress, procrastination, dreaminess",eu:"A new area of study or opportunity is opening — approach it with seriousness and patience, and it will compound.",er:"The ambition is there but the discipline hasn't arrived yet. Start smaller and build the habit before expanding."},
+  {id:175,name:"Knight of Pentacles",arcana:"minor",suit:"pentacles",rank:"KNT",up:"Hard work, reliability, methodical progress",rv:"Laziness, boredom, feeling stuck in routine",eu:"Slow, methodical, relentless — this energy doesn't produce quick results, but what it produces lasts. Trust the process.",er:"The routine has become a rut. The diligence that usually serves you is being applied to something that no longer warrants it."},
+  {id:176,name:"Queen of Pentacles",arcana:"minor",suit:"pentacles",rank:"QUE",up:"Nurturing, practical, abundant, grounded",rv:"Overwork, jealousy, self-neglect",eu:"Practicality, generosity, and the capacity to create comfort for yourself and others are your strengths right now. Use them without apology.",er:"The caretaking has overwhelmed your own needs, or practical concerns have crowded out everything that can't be measured."},
+  {id:177,name:"King of Pentacles",arcana:"minor",suit:"pentacles",rank:"KING",up:"Wealth, success, security, abundance, discipline",rv:"Corruption, greed, materialism, instability",eu:"You have built or are building something real, and the wisdom to steward it well is available to you. Lead from abundance, not from fear of losing it.",er:"Material security has become the lens through which all value is measured, and that lens is too narrow."},
+];
 
-        function toggleAmbience() {
-            const btn = document.getElementById('audioToggle');
-            if (isAmbiencePlaying) {
-                ambientAudio.pause();
-                btn.innerText = "🔈 Ambience";
-            } else {
-                ambientAudio.play().catch(e => console.log("Playback blocked by browser"));
-                btn.innerText = "🔊 Ambience";
-            }
-            isAmbiencePlaying = !isAmbiencePlaying;
-        }
-        
-        let currentSpreadData = [];
+// ─── OGHAM DATA ───────────────────────────────────────────────────────────────
+const OGHAM=[
+  {id:1,sym:"ᚁ",name:"Beith",tree:"Birch",up:"New beginnings, cleansing, renewal, fresh slate",rv:"Clinging to the past, reluctance to begin",cr:true,eu:"The Birch grows first in cleared ground — pioneer, cleanser, the one who comes before the forest is forest. Beith calls you to the blank page, the empty lot, the beginning that only works because everything else has been stripped away. This is the fear of beginning and also its gift.",er:"The start is being refused or delayed. What is being clung to that prevents the ground from being cleared for what actually wants to grow?"},
+  {id:2,sym:"ᚂ",name:"Luis",tree:"Rowan",up:"Protection, vision, divination, clarity",rv:"Illusion, spiritual blindness, deception",cr:true,eu:"The Rowan stands at the edge of the Otherworld and holds the boundary. Luis speaks to sight that goes further than ordinary seeing — the protection that comes from clarity, the vision that perceives what is coming before it arrives.",er:"The sight is clouded or the protection has failed to register what it should. Something has slipped through that deserved more scrutiny."},
+  {id:3,sym:"ᚃ",name:"Fearn",tree:"Alder",up:"Guidance, protection in transition, strong foundations",rv:"Poor guidance, indecision, false protection",cr:true,eu:"The Alder grows between water and land — it is the bridge wood, the foundation laid in uncertain territory. Fearn speaks to the guidance that holds when you're moving between what was and what will be.",er:"The guidance has been poor or the foundation laid in the wrong place. Retrace the steps taken on poor counsel."},
+  {id:4,sym:"ᚄ",name:"Sail",tree:"Willow",up:"Intuition, dreams, moon-wisdom, flexibility",rv:"Blocked intuition, rigidity, emotional overwhelm",cr:true,eu:"The Willow bends without breaking, roots deep in the water's edge, in constant conversation with what flows beneath. Sail invites you to stop resisting the current and to trust the intuition that lives below the rational mind.",er:"Rigidity is preventing necessary flexibility, or the depths have become overwhelming rather than informative."},
+  {id:5,sym:"ᚅ",name:"Nion",tree:"Ash",up:"Connection, destiny, the world tree, broad vision",rv:"Narrow thinking, disconnection, lost thread",cr:true,eu:"The Ash is the World Tree — its roots in the underworld, its crown in the heavens, its trunk the axis connecting all realms. Nion speaks to broad vision, to destiny unfolding across a larger frame than the immediate moment.",er:"The connection to the larger pattern has been lost, or tunnel vision is causing the thread of destiny to be missed."},
+  {id:6,sym:"ᚆ",name:"Huath",tree:"Hawthorn",up:"Cleansing, patience, waiting at the threshold",rv:"Forced action, ignoring inner warnings",cr:true,eu:"The Hawthorn guards the threshold between the human world and the Otherworld — it demands patience, preparation, and right timing before the gate opens. Huath asks you to wait at the door without forcing it.",er:"The warning signs are being ignored. Forced entry will cost more than the waiting would have."},
+  {id:7,sym:"ᚇ",name:"Dair",tree:"Oak",up:"Strength, endurance, sovereignty, deep roots",rv:"Hollow might, toppled authority, shallow roots",cr:true,eu:"The Oak lives for centuries and shelters everything beneath it. Dair speaks to the sovereignty that comes from deep roots — authority that is genuine because it was earned over time, strength that does not need to announce itself.",er:"The strength is either hollow or being brought down by something it underestimated. Test the roots before trusting the height."},
+  {id:8,sym:"ᚈ",name:"Tinne",tree:"Holly",up:"Action, challenge, balance of forces, the warrior",rv:"Imbalance, aggression without cause, haste",cr:true,eu:"The Holly is the warrior tree, ever-green through the harshest months. Tinne asks for the balance between offense and defense, the precise application of force that neither overcorrects nor falls short.",er:"The force is misaimed or the balance has broken. Aggression without cause exhausts the one who sustains it."},
+  {id:9,sym:"ᚉ",name:"Coll",tree:"Hazel",up:"Wisdom, inspiration, the well of knowledge",rv:"Blocked wisdom, misinformation, foolishness",cr:true,eu:"The Hazel drops its nuts into the sacred pool and the Salmon of Wisdom feeds on them. Coll is the tree of inspired knowing, the flash of insight that comes when the question has been sat with long enough. Wisdom is available here if you are still enough to receive it.",er:"The wisdom is blocked or the wrong counsel is being followed. Return to the source."},
+  {id:10,sym:"ᚊ",name:"Quert",tree:"Apple",up:"Beauty, choice, the Otherworld, regeneration",rv:"Confusion, poor choices, spiritual hunger",cr:true,eu:"The Apple is the fruit of the Otherworld — beauty, choice, the sweetness that opens the door to regeneration. Quert speaks to the choice that lies beneath all other choices, and to the beauty that remains available even in difficulty.",er:"The beauty has been missed or the wrong choice made at the crossroads. Return to the branch before the fruit falls."},
+  {id:11,sym:"ᚋ",name:"Muin",tree:"Vine",up:"Introspection, truth revealed, inner prophecy",rv:"Deception, withholding truth, inner chaos",cr:true,eu:"The Vine is the truth-teller — its fruit loosens the tongue and the guard. Muin speaks to introspection that strips away pretense and to the inner vision that becomes available when the performer rests.",er:"What is being hidden from yourself is more important than what is being hidden from others. Look inward with ruthlessness."},
+  {id:12,sym:"ᚌ",name:"Gort",tree:"Ivy",up:"Persistence, growth, finding one's way through",rv:"Clinging, entanglement, suffocating growth",cr:true,eu:"The Ivy finds its way by feel, growing toward light through whatever gaps exist. Gort speaks to persistence that works around obstacles rather than through them, and to the tenacity that outlasts every opposition.",er:"The persistence has become parasitic or the path is choking what it clings to. Let go of the wrong support."},
+  {id:13,sym:"ᚍ",name:"Ngéadal",tree:"Reed",up:"Harmony, healing, the hidden order, music of things",rv:"Discord, fragility, disorder beneath the surface",cr:true,eu:"The Reed is hollow so that music can pass through it — it serves most completely by getting out of the way of what wants to be expressed. Ngéadal speaks to healing that happens through right harmony, the hidden order that underlies apparent chaos.",er:"The discord is too loud to hear the order beneath it. Something needs to be silenced before the deeper pattern becomes audible."},
+  {id:14,sym:"ᚎ",name:"Straif",tree:"Blackthorn",up:"Fate, necessity, overcoming the unavoidable",rv:"Resistance to fate, bitterness, refusal of change",cr:true,eu:"The Blackthorn blooms before its leaves arrive — beauty without protection, beauty out of season. Straif speaks to the necessity that arrives without invitation and cannot be refused, to the fate that strengthens precisely because it could not be avoided.",er:"Fate is being fought past the point of wisdom. What bitterness is being accumulated in the resistance?"},
+  {id:15,sym:"ᚏ",name:"Ruis",tree:"Elder",up:"Transformation, endings, the cycle completed",rv:"Refusal of endings, stagnation, the old that rots",cr:true,eu:"The Elder is the tree of endings and the crone's wood — it marks the completion of cycles, the death that makes the next beginning possible. Ruis does not mourn what is ending; it honors it and steps back so the wheel can turn.",er:"Something is refusing to end that has run its course. The rot spreading from what won't release will damage what is still alive."},
+  {id:16,sym:"ᚐ",name:"Ailm",tree:"Silver Fir",up:"Clarity of vision, long sight, high perspective",rv:"Loss of clarity, short-sightedness, doubt",cr:true,eu:"The Silver Fir grows on the high ground where the view is long. Ailm speaks to clarity gained from perspective — the capacity to see further than the immediate crisis, to hold the whole without losing the detail.",er:"The view has narrowed or the high ground has been lost. What would you see from further back?"},
+  {id:17,sym:"ᚑ",name:"Onn",tree:"Gorse",up:"Vitality, resourcefulness, gathering strength",rv:"Exhaustion, waste of energy, the thorny path",cr:true,eu:"The Gorse blooms in impossible conditions — on rocky outcroppings, in the lean months, when everything else has given up. Onn speaks to vitality that refuses to be extinguished, to the resourcefulness that finds the angle no one else can see.",er:"Energy is being wasted on thorny paths that lead nowhere. What is the cost of refusing to find an easier route?"},
+  {id:18,sym:"ᚒ",name:"Úr",tree:"Heather",up:"Healing, luck, receptivity, opening the way",rv:"Blocked healing, ill fortune, poor soil",cr:true,eu:"The Heather of the high moor is the luck-bringer, the opener of ways, the healing of persistent things. Úr speaks to a shift in fortune and to the receptivity that allows healing to enter rather than armoring against it.",er:"The ground is poor and healing is slow. What is blocking the way in?"},
+  {id:19,sym:"ᚓ",name:"Edad",tree:"Aspen",up:"Endurance, overcoming doubt, trembling resolve",rv:"Fear mastering you, giving voice to dread",cr:true,eu:"The Aspen trembles, and that trembling is its nature — not weakness, but sensitivity, the capacity to register what others miss. Edad speaks to the courage that comes not from being unafraid but from acting despite the fear.",er:"Fear has taken the voice and the will has gone quiet. Name what is frightening before it grows larger in the silence."},
+  {id:20,sym:"ᚔ",name:"Idad",tree:"Yew",up:"Rebirth through death, ancient memory, lineage",rv:"Fear of transformation, clinging to dead wood",cr:true,eu:"The Yew outlives everything, grows in graveyards, poisons and heals in the same breath — it is the tree of the dead and the tree of rebirth, the keeper of ancestral memory. Idad asks you to face the deepest transformation available to you without flinching.",er:"The transformation is being avoided by clinging to what has already died. The dead wood does not sustain the living tree."},
+  {id:21,sym:"ᚕ",name:"Éabhadh",tree:"Grove Aspen",up:"Growth after difficulty, earned expansion",rv:"Hollow growth, false prosperity",cr:true,eu:"After difficulty comes expansion — not as reward but as the natural consequence of having done the hard work. Éabhadh speaks to growth that now has room to occur because the ground has been prepared by everything that came before.",er:"The expansion is premature or hollow. What needs to be addressed before the growth can be genuine?"},
+  {id:22,sym:"ᚖ",name:"Óir",tree:"Spindle",up:"Clarity of purpose, threads coming together",rv:"Tangled purpose, confused direction",cr:true,eu:"The Spindle tree holds the threads of purpose together. Óir speaks to the moment when scattered intentions cohere into a single, usable direction. This is clarity you can act on.",er:"The threads are tangled and purpose is obscured. One thing at a time."},
+  {id:23,sym:"ᚗ",name:"Uilleann",tree:"Honeysuckle",up:"Binding love, nostalgia, sweet longing",rv:"Suffocating ties, the past as prison",cr:true,eu:"The Honeysuckle twines around what it loves and the scent it releases is almost unbearable in its sweetness. Uilleann speaks to the bonds of love and longing, to the nostalgia that is also a form of truth about what matters most.",er:"The sweet binding has become a constraint, or the past is being held with a grip that prevents the present from being inhabited."},
+  {id:24,sym:"ᚘ",name:"Ifín",tree:"Gooseberry",up:"Hidden sweetness, patience with sharpness",rv:"Bitterness, overlooked gifts, guarded heart",cr:true,eu:"Sweet fruit inside a thorned bush — Ifín speaks to the gifts that require care to access, to the patience that reveals what hasty hands miss. There is more here than first appears.",er:"Bitterness has overtaken the sweetness, or the guarded heart has become its own kind of poverty."},
+  {id:25,sym:"ᚙ",name:"Eamhancholl",tree:"Twin Hazel",up:"Dual wisdom, seeing both sides, integration",rv:"Division, inability to reconcile, split vision",cr:true,eu:"The Twin Hazel is both at once — this and that, light and shadow, the paradox held without resolution. Eamhancholl speaks to the integration of opposites, to the wisdom that sees both sides not as contradiction but as completion.",er:"The division is too sharp to see across. What would it take to hold both truths at once?"},
+];
 
-        const deck = [
-            // Major Arcana
-            { num: "0", name: "The Fool", upright: "New beginnings, innocence, spontaneity, a free spirit.", reversed: "Recklessness, risk-taking, holding back, naivety." },
-            { num: "I", name: "The Magician", upright: "Manifestation, resourcefulness, power, inspired action.", reversed: "Manipulation, poor planning, untapped talents." },
-            { num: "II", name: "The High Priestess", upright: "Intuition, sacred knowledge, divine feminine, the subconscious.", reversed: "Secrets, disconnected from intuition, withdrawal." },
-            { num: "III", name: "The Empress", upright: "Femininity, beauty, nature, nurturing, abundance.", reversed: "Creative block, dependence on others, smothering." },
-            { num: "IV", name: "The Emperor", upright: "Authority, establishment, structure, a father figure.", reversed: "Domination, excessive control, lack of discipline." },
-            { num: "V", name: "The Hierophant", upright: "Spiritual wisdom, religious beliefs, conformity, tradition.", reversed: "Personal beliefs, freedom, challenging the status quo." },
-            { num: "VI", name: "The Lovers", upright: "Love, harmony, relationships, values alignment, choices.", reversed: "Self-love, disharmony, imbalance, misalignment of values." },
-            { num: "VII", name: "The Chariot", upright: "Control, willpower, success, action, determination.", reversed: "Self-discipline, opposition, lack of direction." },
-            { num: "VIII", name: "Strength", upright: "Courage, persuasion, influence, compassion, inner power.", reversed: "Inner strength, self-doubt, low energy, raw emotion." },
-            { num: "IX", name: "The Hermit", upright: "Soul-searching, introspection, being alone, inner guidance.", reversed: "Isolation, loneliness, withdrawal." },
-            { num: "X", name: "Wheel of Fortune", upright: "Good luck, karma, life cycles, destiny, a turning point.", reversed: "Bad luck, resistance to change, breaking cycles." },
-            { num: "XI", name: "Justice", upright: "Justice, fairness, truth, cause and effect, law.", reversed: "Unfairness, lack of accountability, dishonesty." },
-            { num: "XII", name: "The Hanged Man", upright: "Pause, surrender, letting go, new perspectives.", reversed: "Delays, resistance, stalling, indecision." },
-            { num: "XIII", name: "Death", upright: "Endings, change, transformation, transition.", reversed: "Resistance to change, personal transformation, inner purging." },
-            { num: "XIV", name: "Temperance", upright: "Balance, moderation, patience, purpose.", reversed: "Imbalance, excess, self-healing, re-alignment." },
-            { num: "XV", name: "The Devil", upright: "Shadow self, attachment, addiction, restriction, sexuality.", reversed: "Releasing limiting beliefs, exploring dark thoughts, detachment." },
-            { num: "XVI", name: "The Tower", upright: "Sudden change, upheaval, chaos, revelation, awakening.", reversed: "Personal transformation, fear of change, averting disaster." },
-            { num: "XVII", name: "The Star", upright: "Hope, faith, purpose, renewal, spirituality.", reversed: "Lack of faith, despair, self-trust, disconnection." },
-            { num: "XVIII", name: "The Moon", upright: "Illusion, fear, anxiety, subconscious, intuition.", reversed: "Release of fear, repressed emotion, inner confusion." },
-            { num: "XIX", name: "The Sun", upright: "Positivity, fun, warmth, success, vitality.", reversed: "Inner child, feeling down, overly optimistic." },
-            { num: "XX", name: "Judgement", upright: "Judgement, rebirth, inner calling, absolution.", reversed: "Self-doubt, inner critic, ignoring the call." },
-            { num: "XXI", name: "The World", upright: "Completion, integration, accomplishment, travel.", reversed: "Seeking personal closure, short-cuts, delays." },
-            // Wands
-            { num: "Ace", name: "Ace of Wands", upright: "Inspiration, new opportunities, growth, potential.", reversed: "An emerging idea, lack of direction, distractions." },
-            { num: "II", name: "Two of Wands", upright: "Future planning, progress, decisions, discovery.", reversed: "Personal goals, inner alignment, fear of unknown." },
-            { num: "III", name: "Three of Wands", upright: "Preparation, foresight, enterprise, expansion.", reversed: "Playing it safe, avoiding risk, delays." },
-            { num: "IV", name: "Four of Wands", upright: "Celebration, joy, harmony, relaxation, homecoming.", reversed: "Personal celebration, inner harmony, conflict." },
-            { num: "V", name: "Five of Wands", upright: "Conflict, disagreements, competition, tension, diversity.", reversed: "Inner conflict, conflict avoidance, tension release." },
-            { num: "VI", name: "Six of Wands", upright: "Success, public recognition, progress, self-confidence.", reversed: "Private achievement, personal vision, egotism." },
-            { num: "VII", name: "Seven of Wands", upright: "Challenge, competition, protection, perseverance.", reversed: "Exhaustion, giving up, feeling overwhelmed." },
-            { num: "VIII", name: "Eight of Wands", upright: "Movement, fast paced change, action, alignment.", reversed: "Delays, frustration, resisting change, internal alignment." },
-            { num: "IX", name: "Nine of Wands", upright: "Resilience, courage, persistence, test of faith, boundaries.", reversed: "Inner struggles, hesitation, paranoia, overwhelm." },
-            { num: "X", name: "Ten of Wands", upright: "Burden, extra responsibility, hard work, completion.", reversed: "Doing it all, carrying the burden, delegation." },
-            { num: "Page", name: "Page of Wands", upright: "Inspiration, ideas, discovery, limitless potential.", reversed: "Newly formed ideas, redirecting energy, self-limiting." },
-            { num: "Knight", name: "Knight of Wands", upright: "Energy, passion, inspired action, adventure, impulsiveness.", reversed: "Passion project, haste, scattered energy, delays." },
-            { num: "Queen", name: "Queen of Wands", upright: "Courage, confidence, independence, social butterfly.", reversed: "Self-respect, self-confidence, introverted, re-establish sense of self." },
-            { num: "King", name: "King of Wands", upright: "Natural-born leader, vision, entrepreneur, honor.", reversed: "Impulsiveness, haste, ruthless, high expectations." },
-            // Cups
-            { num: "Ace", name: "Ace of Cups", upright: "Love, new relationships, compassion, creativity.", reversed: "Self-love, intuition, repressed emotions." },
-            { num: "II", name: "Two of Cups", upright: "Unified love, partnership, mutual attraction.", reversed: "Self-love, break-ups, disharmony, distrust." },
-            { num: "III", name: "Three of Cups", upright: "Celebration, friendship, creativity, collaborations.", reversed: "Independence, alone time, hardcore partying, 'three's a crowd'." },
-            { num: "IV", name: "Four of Cups", upright: "Meditation, contemplation, apathy, reevaluation.", reversed: "Retreat, withdrawal, checking in for alignment." },
-            { num: "V", name: "Five of Cups", upright: "Regret, failure, disappointment, pessimism.", reversed: "Personal setbacks, self-forgiveness, moving on." },
-            { num: "VI", name: "Six of Cups", upright: "Revisiting the past, childhood memories, innocence, joy.", reversed: "Living in the past, forgiveness, lacking playfulness." },
-            { num: "VII", name: "Seven of Cups", upright: "Opportunities, choices, wishful thinking, illusion.", reversed: "Alignment, personal values, overwhelmed by choices." },
-            { num: "VIII", name: "Eight of Cups", upright: "Disappointment, abandonment, withdrawal, escapism.", reversed: "Trying one more time, indecision, aimless drifting." },
-            { num: "IX", name: "Nine of Cups", upright: "Contentment, satisfaction, gratitude, wish come true.", reversed: "Inner happiness, materialism, dissatisfaction, indulgence." },
-            { num: "X", name: "Ten of Cups", upright: "Divine love, blissful relationships, harmony, alignment.", reversed: "Disconnection, misaligned values, struggling relationships." },
-            { num: "Page", name: "Page of Cups", upright: "Creative opportunities, intuitive messages, curiosity.", reversed: "New ideas, doubting intuition, creative blocks." },
-            { num: "Knight", name: "Knight of Cups", upright: "Creativity, romance, charm, imagination, beauty.", reversed: "Overactive imagination, unrealistic, jealous, moody." },
-            { num: "Queen", name: "Queen of Cups", upright: "Compassionate, caring, emotionally stable, intuitive.", reversed: "Inner feelings, self-care, co-dependency, martyr." },
-            { num: "King", name: "King of Cups", upright: "Emotionally balanced, compassionate, diplomatic.", reversed: "Self-compassion, inner balance, moodiness, emotionally manipulative." },
-            // Swords
-            { num: "Ace", name: "Ace of Swords", upright: "Breakthroughs, new ideas, mental clarity, success.", reversed: "Inner clarity, re-thinking an idea, clouded judgement." },
-            { num: "II", name: "Two of Swords", upright: "Difficult decisions, weighing up options, an impasse, avoidance.", reversed: "Indecision, confusion, information overload, stalemate." },
-            { num: "III", name: "Three of Swords", upright: "Heartbreak, emotional pain, sorrow, grief, hurt.", reversed: "Negative self-talk, releasing pain, optimism, forgiveness." },
-            { num: "IV", name: "Four of Swords", upright: "Rest, relaxation, meditation, contemplation, recuperation.", reversed: "Exhaustion, burn-out, deep contemplation, stagnation." },
-            { num: "V", name: "Five of Swords", upright: "Conflict, disagreements, competition, defeat, winning at all costs.", reversed: "Reconciliation, making amends, past resentment." },
-            { num: "VI", name: "Six of Swords", upright: "Transition, change, rite of passage, releasing baggage.", reversed: "Personal transition, resistance to change, unfinished business." },
-            { num: "VII", name: "Seven of Swords", upright: "Betrayal, deception, getting away with something, acting strategically.", reversed: "Imposter syndrome, self-deceit, keeping secrets." },
-            { num: "VIII", name: "Eight of Swords", upright: "Negative thoughts, self-imposed restriction, imprisonment, victim mentality.", reversed: "Self-limiting beliefs, inner critic, releasing negative thoughts." },
-            { num: "IX", name: "Nine of Swords", upright: "Anxiety, worry, fear, depression, nightmares.", reversed: "Inner turmoil, deep-seated fears, secrets, releasing worry." },
-            { num: "X", name: "Ten of Swords", upright: "Painful endings, deep wounds, betrayal, loss, crisis.", reversed: "Recovery, regeneration, resisting an inevitable end." },
-            { num: "Page", name: "Page of Swords", upright: "New ideas, curiosity, thirst for knowledge, new ways of communicating.", reversed: "Self-expression, all talk and no action, haphazard action." },
-            { num: "Knight", name: "Knight of Swords", upright: "Ambitious, action-oriented, driven to succeed, fast-thinking.", reversed: "Restless, unfocused, impulsive, burn-out." },
-            { num: "Queen", name: "Queen of Swords", upright: "Independent, unbiased judgement, clear boundaries, direct communication.", reversed: "Overly-emotional, easily influenced, bitchy, cold-hearted." },
-            { num: "King", name: "King of Swords", upright: "Mental clarity, intellectual power, authority, truth.", reversed: "Quiet power, inner truth, misuse of power, manipulation." },
-            // Pentacles
-            { num: "Ace", name: "Ace of Pentacles", upright: "A new financial or career opportunity, manifestation, abundance.", reversed: "Lost opportunity, lack of planning and foresight." },
-            { num: "II", name: "Two of Pentacles", upright: "Multiple priorities, time management, prioritization, adaptability.", reversed: "Over-committed, disorganization, reprioritization." },
-            { num: "III", name: "Three of Pentacles", upright: "Teamwork, collaboration, learning, implementation.", reversed: "Disharmony, misalignment, working alone." },
-            { num: "IV", name: "Four of Pentacles", upright: "Saving money, security, conservatism, scarcity, control.", reversed: "Over-spending, greed, self-protection." },
-            { num: "V", name: "Five of Pentacles", upright: "Financial loss, poverty, isolation, worry, struggle.", reversed: "Recovery from financial loss, spiritual poverty." },
-            { num: "VI", name: "Six of Pentacles", upright: "Giving, receiving, sharing wealth, generosity, charity.", reversed: "Self-care, unpaid debts, one-sided charity." },
-            { num: "VII", name: "Seven of Pentacles", upright: "Long-term view, sustainable results, perseverance, investment.", reversed: "Lack of long-term vision, limited success or reward." },
-            { num: "VIII", name: "Eight of Pentacles", upright: "Apprenticeship, repetitive tasks, mastery, skill development.", reversed: "Self-development, perfectionism, misdirected activity." },
-            { num: "IX", name: "Nine of Pentacles", upright: "Abundance, luxury, self-sufficiency, financial independence.", reversed: "Self-worth, over-investment in work, hustling." },
-            { num: "X", name: "Ten of Pentacles", upright: "Wealth, financial security, family, long-term success, contribution.", reversed: "The dark side of wealth, financial failure or loss." },
-            { num: "Page", name: "Page of Pentacles", upright: "Manifestation, financial opportunity, skill development.", reversed: "Lack of progress, procrastination, learn from failure." },
-            { num: "Knight", name: "Knight of Pentacles", upright: "Hard work, productivity, routine, conservatism.", reversed: "Self-discipline, boredom, feeling 'stuck', perfectionism." },
-            { num: "Queen", name: "Queen of Pentacles", upright: "Nurturing, practical, providing financially, a working parent.", reversed: "Financial independence, self-care, work-home conflict." },
-            { num: "King", name: "King of Pentacles", upright: "Wealth, business, leadership, security, discipline, abundance.", reversed: "Financially inept, obsessed with wealth and status, stubborn." }
-        ];
+// ─── AETTIR (for blót reading) ────────────────────────────────────────────────
+const AETTIR = [
+  { name:"Freyr's Aett", ids:[1,2,3,4,5,6,7,8], color:"#e8c060",
+    theme:"creation, material life, the personal journey, and the fertile forces of will and desire",
+    dom:"The cast is rooted in the tangible world — in growth, movement, and the work of becoming. The forces of creation, personal momentum, and material life are most present in this reading.",
+    shd:"Freyr's aett carries the heaviest shadow here. The very forces of growth and desire are under pressure — the material and personal realm is being tested at its foundations." },
+  { name:"Hagal's Aett", ids:[9,10,11,12,13,14,15,16], color:"#90aae0",
+    theme:"challenge, limitation, mystery, and the forces that arrive without invitation",
+    dom:"The cast is shaped by threshold work — by what cannot be controlled or predicted. Disruption, inner transformation, and the necessity of difficult crossings are most present in this reading.",
+    shd:"Hagal's aett is heavily inverted. The challenges are compounding, and the forces of disruption have turned adversarial. This is the hardest kind of reading to sit with, and also the most instructive." },
+  { name:"Tyr's Aett", ids:[17,18,19,20,21,22,23,24], color:"#c090f0",
+    theme:"community, heritage, the human bond, and the completion of cycles",
+    dom:"The cast is rooted in relationship — to others, to ancestry, to the larger pattern you are part of. Questions of belonging, legacy, and what connects you to something beyond yourself are most present.",
+    shd:"Tyr's aett carries the heaviest shadow. The bonds of community and lineage are under strain — what should connect and support is fraying, or being withheld." },
+];
 
-        const spreads = {
-            single: [{ id: "single", label: "The Focus" }],
-            three: [
-                { id: "past", label: "The Past" },
-                { id: "present", label: "The Present" },
-                { id: "future", label: "The Future" }
-            ],
-            celtic: [
-                { id: "present", label: "1. Present" },
-                { id: "challenge", label: "2. Challenge" },
-                { id: "past", label: "3. Past" },
-                { id: "future", label: "4. Future" },
-                { id: "conscious", label: "5. Conscious" },
-                { id: "unconscious", label: "6. Unconscious" },
-                { id: "advice", label: "7. Advice" },
-                { id: "environment", label: "8. Environment" },
-                { id: "hopes", label: "9. Hopes/Fears" },
-                { id: "outcome", label: "10. Outcome" }
-            ]
-        };
+// ─── CONFIGS ─────────────────────────────────────────────────────────────────
+const CONFIGS = {
+  runes:{data:RUNES,title:"The Rune Cast",headerSyms:"ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ",subtitle:"Elder Futhark · Seek What the Norns Weave",accent:"#b87d2a",bright:"#e8c060",tabSymOrns:["ᚦ","ᚨ","ᛟ","ᛏ"],
+   spreads:[
+     {n:1,sym:"ᛁ",label:"1 · Single",desc:"One answer, undivided"},
+     {n:3,sym:"ᚦ",label:"3 · The River",desc:"Past · Present · Future"},
+     {n:5,sym:"ᚲ",label:"5 · Five Paths",desc:"Foundation to outcome"},
+     {n:24,sym:"᛭",label:"24 · The Blót",desc:"Dump the bag — the full cast"},
+   ],
+   positions:{1:["The Answer"],3:["What Was","What Is","What Will Be"],5:["The Foundation","The Present","The Hidden","The Counsel","The Outcome"]},
+   castText:"ᚨ  Cast the Runes  ᚨ",revealText:"ᛟ  Reveal the Reading  ᛟ"},
+  tarot:{data:TAROT,title:"The Tarot",headerSyms:"✦ ★ ✦ ★ ✦ ★ ✦ ★",subtitle:"Rider-Waite Tradition · Seek What the Cards Reveal",accent:"#6050a0",bright:"#c090f0",tabSymOrns:["✦","★","✦","★"],
+   spreads:[{n:1,sym:"✦",label:"1 · The Draw",desc:"One card, one truth"},{n:3,sym:"★",label:"3 · Past · Present · Future",desc:"The river of time"},{n:5,sym:"✦",label:"5 · Spread",desc:"Situation to outcome"},{n:10,sym:"✚",label:"10 · Celtic Cross",desc:"The full picture"}],
+   positions:{1:["The Draw"],3:["Past","Present","Future"],5:["Situation","Challenge","Foundation","Advice","Outcome"],10:["The Present","The Challenge","The Foundation","The Recent Past","The Possible Future","The Near Future","The Self","External Forces","Hopes & Fears","The Outcome"]},
+   castText:"✦  Draw the Cards  ✦",revealText:"✦  Reveal the Reading  ✦"},
+  ogham:{data:OGHAM,title:"The Ogham Grove",headerSyms:"ᚁ ᚂ ᚃ ᚄ ᚅ ᚆ ᚇ ᚈ",subtitle:"Celtic Tree Alphabet · Seek What the Trees Speak",accent:"#3a6820",bright:"#70c040",tabSymOrns:["ᚁ","ᚉ","ᚏ","ᚙ"],
+   spreads:[{n:1,sym:"ᚁ",label:"1 · The Few",desc:"One tree, one voice"},{n:3,sym:"ᚇ",label:"3 · Three Realms",desc:"Land · Sea · Sky"},{n:5,sym:"ᚉ",label:"5 · The Grove",desc:"Root to seed"}],
+   positions:{1:["The Few"],3:["Land","Sea","Sky"],5:["The Root","The Branch","The Leaf","The Fruit","The Seed"]},
+   castText:"ᚁ  Cast the Fews  ᚁ",revealText:"ᚙ  Reveal the Reading  ᚙ"},
+};
 
-        function shuffle(array) {
-            let currentIndex = array.length, randomIndex;
-            while (currentIndex != 0) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-            }
-            return array;
-        }
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let curSys='runes', curSpread=null, drawn=[];
+let castGeneration=0, castReady=false, readingShown=false, castIntention='';
+const castTimers=new Set();
+const reducedMotion=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function later(fn,delay){
+  const generation=castGeneration;
+  const timer=setTimeout(()=>{castTimers.delete(timer);if(generation===castGeneration)fn()},reducedMotion()?0:delay);
+  castTimers.add(timer);
+}
+function cancelCast(){
+  castGeneration++;
+  castTimers.forEach(clearTimeout);castTimers.clear();
+  castReady=false;readingShown=false;
+  document.getElementById('reveal-btn').disabled=true;
+  document.getElementById('cast-status').textContent='';
+}
+function clearCast(){
+  cancelCast();drawn=[];
+  ['card-display','reading-display','reset-btn','blot-desc'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+  document.getElementById('rune-spread').replaceChildren();
+}
+function finishCast(){
+  castReady=true;
+  document.getElementById('reveal-btn').disabled=false;
+  document.querySelectorAll('.blot-tile').forEach(t=>t.disabled=false);
+  document.getElementById('cast-status').textContent='Cast ready. Reveal the reading.';
+}
+function showIntention(){
+  const el=document.getElementById('reading-intention');
+  el.textContent=castIntention?'Your intention\n'+castIntention:'';
+  el.classList.toggle('hidden',!castIntention);
+}
+function scrollReading(){document.getElementById('reading-display').scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'})}
 
-        function drawSpread(type) {
-            const container = document.getElementById('spreadContainer');
-            const readingArea = document.getElementById('readingArea');
-            const synthesizeBtn = document.getElementById('btnSynthesize');
-            
-            document.getElementById('questionInput').blur(); 
-            
-            container.innerHTML = '';
-            readingArea.innerHTML = '';
-            currentSpreadData = []; 
-            synthesizeBtn.style.display = 'block';
 
-            const shuffledDeck = shuffle([...deck]);
-            const positions = spreads[type];
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 
-            positions.forEach((pos, index) => {
-                const cardData = shuffledDeck[index];
-                const isReversed = Math.random() > 0.5;
-                const orientationText = isReversed ? "Reversed" : "Upright";
-                
-                currentSpreadData.push({
-                    position: pos.label,
-                    cardName: cardData.name,
-                    orientation: orientationText
-                });
-                
-                const cardWrapper = document.createElement('div');
-                cardWrapper.className = 'card-wrapper';
-                cardWrapper.onclick = () => flipCard(cardWrapper, `reading-${pos.id}`);
+function cardFaceHTML(card){
+  const rev=card.isReversed,m=rev?card.rv:card.up;
+  if(curSys==='runes'){const sc=rev?'#c44828':'#e8c060',sg=rev?'0 0 20px rgba(196,72,40,0.55)':'0 0 20px rgba(230,185,80,0.55)',oc=rev?'#c44828':'#b87d2a';return`<span class="${rev?'sym-rev':''}" style="font-size:3rem;color:${sc};text-shadow:${sg};line-height:1">${card.sym}</span><span style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.07rem;color:#deca9a">${card.name}</span><span style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.14rem;text-transform:uppercase;color:${oc}">${rev?'Merkstave':'Upright'}</span><span style="font-size:.75rem;color:#9a8a6a;text-align:center;line-height:1.35;font-style:italic;padding-top:.1rem">${m||''}</span>`}
+  if(curSys==='ogham'){const sc=rev?'#c44828':'#70c040',sg=rev?'0 0 20px rgba(196,72,40,0.55)':'0 0 20px rgba(80,200,64,0.5)',oc=rev?'#c44828':'#3a8020';return`<span class="${rev?'sym-rev':''}" style="font-size:2.8rem;color:${sc};text-shadow:${sg};line-height:1">${card.sym}</span><span style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.06rem;color:#deca9a">${card.name}</span><span style="font-size:.75rem;color:#9a8a6a;font-style:italic;margin-top:-1px">${card.tree}</span><span style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.13rem;text-transform:uppercase;color:${oc}">${rev?'Reversed':'Upright'}</span><span style="font-size:.75rem;color:#9a8a6a;text-align:center;line-height:1.35;font-style:italic;padding-top:.08rem">${m||''}</span>`}
+  if(curSys==='tarot'){const isMaj=card.arcana==='major',sc=rev?'#c44828':(isMaj?'#c090f0':SUIT_COLS[card.suit]),rankFS=card.rank.length>4?'1.1rem':card.rank.length>3?'1.25rem':'1.55rem',sl=!isMaj?`<span style="font-size:.9rem;color:${sc};line-height:1">${SUIT_SYMS[card.suit]}</span>`:'',oc=rev?'#c44828':'#7060a0';return`<span style="font-family:'Oracle Symbols','Cinzel',serif;font-size:${rankFS};color:${sc};line-height:1;text-align:center">${card.rank}</span>${sl}<span style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.03rem;color:#deca9a;text-align:center;word-break:break-word;padding:0 .15rem;line-height:1.3">${card.name}</span><span style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.13rem;text-transform:uppercase;color:${oc}">${rev?'Reversed':'Upright'}</span><span style="font-size:.75rem;color:#9a8a6a;text-align:center;line-height:1.33;font-style:italic;padding-top:.08rem">${m||''}</span>`}
+  return'';
+}
 
-                cardWrapper.innerHTML = `
-                    <div class="card-inner">
-                        <div class="card-face card-back"></div>
-                        <div class="card-face card-front ${isReversed ? 'reversed' : ''}">
-                            <div class="card-num">${cardData.num}</div>
-                            <div class="card-center-art"></div>
-                            <div class="card-name">${cardData.name}</div>
-                        </div>
-                    </div>
-                    <div class="position-label">${pos.label}</div>
-                `;
-                
-                container.appendChild(cardWrapper);
+function makeCardEl(card,i,posLabel){
+  const wrap=document.createElement('div');wrap.className='rune-card-wrapper';wrap.style.animationDelay=`${i*0.1}s`;
+  wrap.innerHTML=`<div class="pos-label">${posLabel}</div><div class="rune-card" id="card-${i}"><div class="rune-card-inner"><div class="card-face card-front"><span class="card-hidden-sym">${curSys==='tarot'?'★':curSys==='ogham'?'᚛':'᛭'}</span><span class="card-hidden-sub">${curSys==='tarot'?'✦ ★ ✦':curSys==='ogham'?'ᚁᚂᚃᚄᚅ':'ᚠᚢᚦᚨᚱ'}</span></div><div class="card-face card-back">${cardFaceHTML(card)}</div></div></div>`;
+  return wrap;
+}
 
-                const readingCard = document.createElement('div');
-                readingCard.className = 'reading-card';
-                readingCard.id = `reading-${pos.id}`;
-                
-                const meaning = isReversed ? cardData.reversed : cardData.upright;
+// ─── SYSTEM SELECT ────────────────────────────────────────────────────────────
+function selectSystem(s){
+  clearCast();
+  curSys=s;curSpread=null;drawn=[];
+  const cfg=CONFIGS[s];
+  document.getElementById('hdr-runes').textContent=cfg.headerSyms;
+  document.getElementById('app-title').textContent=cfg.title;
+  document.getElementById('app-title').style.color=cfg.bright;
+  document.getElementById('app-subtitle').textContent=cfg.subtitle;
+  cfg.tabSymOrns.forEach((o,i)=>{const el=document.getElementById(['orn-tl','orn-tr','orn-bl','orn-br'][i]);el.textContent=o;el.style.color=cfg.accent});
+  ['runes','tarot','ogham'].forEach(id=>{const t=document.getElementById(`tab-${id}`),a=id===s;t.setAttribute('aria-pressed',String(a));t.style.borderColor=a?cfg.bright:'rgba(130,100,50,0.2)';t.style.color=a?cfg.bright:'';t.style.background=a?`linear-gradient(135deg,${cfg.accent}30,${cfg.accent}18)`:'rgba(8,4,1,0.6)';t.style.boxShadow=a?`0 0 14px ${cfg.accent}40`:''});
+  const opts=document.getElementById('spread-options');opts.innerHTML='';
+  cfg.spreads.forEach(sp=>{const btn=document.createElement('button');btn.className='spread-btn';btn.dataset.n=sp.n;btn.setAttribute('aria-pressed','false');btn.innerHTML=`<span class="spread-sym">${sp.sym}</span><span class="spread-name">${sp.label}</span><span class="spread-desc">${sp.desc}</span>`;btn.onclick=()=>selectSpread(sp.n);opts.appendChild(btn)});
+  const cb=document.getElementById('cast-btn');cb.textContent=cfg.castText;cb.style.borderColor=cfg.accent;cb.style.color=cfg.bright;cb.disabled=true;
+  document.getElementById('reveal-btn').textContent=cfg.revealText;
+  document.getElementById('card-display').classList.add('hidden');
+  document.getElementById('reading-display').classList.add('hidden');
+  document.getElementById('reset-btn').classList.add('hidden');
+  document.getElementById('blot-desc').classList.add('hidden');
+}
 
-                readingCard.innerHTML = `
-                    <div class="reading-title">${pos.label}</div>
-                    <div class="reading-card-name">${cardData.name} (${orientationText})</div>
-                    <div class="reading-meaning">${meaning}</div>
-                `;
-                
-                readingArea.appendChild(readingCard);
-            });
-        }
+// ─── SPREAD SELECT ────────────────────────────────────────────────────────────
+function selectSpread(n){
+  clearCast();
+  curSpread=n;const cfg=CONFIGS[curSys];
+  document.querySelectorAll('.spread-btn').forEach(b=>{const a=+b.dataset.n===n;b.setAttribute('aria-pressed',String(a));b.style.borderColor=a?cfg.bright:'rgba(130,100,50,0.25)';b.style.color=a?cfg.bright:'';b.style.background=a?`linear-gradient(135deg,${cfg.accent}28,${cfg.accent}14)`:'rgba(8,4,1,0.6)';b.style.boxShadow=a?`0 0 14px ${cfg.accent}38`:''});
+  const cb=document.getElementById('cast-btn');cb.disabled=false;cb.style.boxShadow=`0 0 18px ${cfg.accent}50`;
+}
 
-        function flipCard(cardElement, readingId) {
-            if (!cardElement.classList.contains('flipped')) {
-                flipAudio.currentTime = 0;
-                flipAudio.play().catch(e => console.log("Audio play prevented until user interaction."));
-                
-                cardElement.classList.add('flipped');
-                document.getElementById(readingId).style.display = 'block';
-            }
-        }
+// ─── CAST ─────────────────────────────────────────────────────────────────────
+function castCards(){
+  if(!curSpread)return;
+  cancelCast();
+  castIntention=document.getElementById('question').value.trim();
+  document.getElementById('cast-status').textContent='Casting…';
+  document.getElementById('reading-display').classList.add('hidden');
+  document.getElementById('reset-btn').classList.add('hidden');
+  document.getElementById('blot-desc').classList.add('hidden');
+  drawn=shuffle(CONFIGS[curSys].data).slice(0,curSpread).map(c=>({...c,isReversed:(curSys==='tarot'||c.cr===true)&&Math.random()<0.4}));
+  document.getElementById('reveal-btn').disabled=true;
+  document.getElementById('card-display').classList.remove('hidden');
+  if(curSys==='runes'&&curSpread===24) renderBlotCast();
+  else if(curSys==='tarot'&&curSpread===10) renderCelticCross();
+  else renderStandard();
+}
 
-      function generateAIReading() {
-            const question = document.getElementById('questionInput').value || "a general overview of my current path";
-            
-            // Determine spread type based on how many cards were drawn
-            let spreadType = "Tarot";
-            if (currentSpreadData.length === 1) spreadType = "Single Card";
-            if (currentSpreadData.length === 3) spreadType = "3-Card";
-            if (currentSpreadData.length === 10) spreadType = "Celtic Cross";
-            
-            let promptText = `Act as an expert, intuitive Tarot reader. I have drawn a ${spreadType} spread to explore the following focus: "${question}".\n\nHere are the specific cards and their structural positions:\n`;
-            
-            currentSpreadData.forEach(card => {
-                promptText += `- ${card.position}: ${card.cardName} (${card.orientation})\n`;
-            });
-            
-            promptText += `\nPlease provide a deep, holistic synthesis of this reading. Do not simply list the standard individual card meanings. Instead, weave them together into a cohesive narrative. Highlight any overarching themes, elemental energies, or striking contrasts between the cards. Connect the reading directly to my focus, provide grounded advice, and end with a single, thought-provoking question for my own reflection.`;
+// ─── STANDARD RENDER ──────────────────────────────────────────────────────────
+function renderStandard(){
+  const pos=CONFIGS[curSys].positions[curSpread],el=document.getElementById('rune-spread');
+  el.innerHTML='';el.className='rune-spread';el.style.cssText='';
+  drawn.forEach((card,i)=>el.appendChild(makeCardEl(card,i,pos[i])));
+  flipCards(drawn.length,700);
+}
 
-            navigator.clipboard.writeText(promptText).then(() => {
-                const btn = document.getElementById('btnSynthesize');
-                btn.innerText = "Prompt Copied!";
-                setTimeout(() => { btn.innerText = "Copy Spread for AI Synthesis"; }, 3000);
-            }).catch(err => {
-                alert("Failed to copy text. Your browser may not support this feature.");
-            });
-        }
-    </script>
+// ─── CELTIC CROSS ─────────────────────────────────────────────────────────────
+function renderCelticCross(){
+  const pos=CONFIGS.tarot.positions[10],el=document.getElementById('rune-spread');
+  el.innerHTML='';el.className='';el.style.cssText='display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.2rem 0 .4rem;width:100%';
+  const wrap=document.createElement('div');wrap.className='cc-wrap';
+  const cross=document.createElement('div');cross.className='cc-cross';
+  cross.appendChild(makeCardEl(drawn[4],4,pos[4]));
+  cross.appendChild(makeCardEl(drawn[3],3,pos[3]));
+  const center=document.createElement('div');center.className='cc-center';
+  center.appendChild(makeCardEl(drawn[0],0,pos[0]));
+  const challenge=document.createElement('div');challenge.className='cc-challenge';
+  challenge.appendChild(makeCardEl(drawn[1],1,pos[1]));center.appendChild(challenge);
+  cross.appendChild(center);
+  cross.appendChild(makeCardEl(drawn[5],5,pos[5]));
+  cross.appendChild(makeCardEl(drawn[2],2,pos[2]));
+  const staffLbl=document.createElement('div');staffLbl.className='cc-divider';staffLbl.textContent='✦  The Staff  ✦';
+  const staff=document.createElement('div');staff.className='cc-staff';
+  [6,7,8,9].forEach(i=>staff.appendChild(makeCardEl(drawn[i],i,pos[i])));
+  wrap.appendChild(cross);wrap.appendChild(staffLbl);wrap.appendChild(staff);el.appendChild(wrap);
+  flipCards(10,550);
+}
+
+function flipCards(count,interval){
+  for(let i=0;i<count;i++)later(()=>{const c=document.getElementById(`card-${i}`);if(c)c.classList.add('flipped')},450+i*interval);
+  later(finishCast,450+count*interval+300);
+}
+
+// ─── BLÓT CAST ────────────────────────────────────────────────────────────────
+const CLOTH_SIZE = 540;
+const CX = CLOTH_SIZE / 2;  // 270
+const CY = CLOTH_SIZE / 2;  // 270
+const MAX_R = 248;           // leave ~22px (tile radius) from cloth edge
+const ZONE_1 = CX * 0.333;  // inner zone boundary ~90px
+const ZONE_2 = CX * 0.666;  // middle zone boundary ~180px
+
+function generateBlotPositions(){
+  const width=Math.min(540,document.getElementById('rune-spread').clientWidth);
+  const minDist=Math.max(48,46*CLOTH_SIZE/width);
+  const limit=Math.min(226,CX-25*CLOTH_SIZE/width);
+  for(let restart=0;restart<10;restart++){
+    const positions=[];
+    for(let attempts=0;positions.length<24&&attempts<5000;attempts++){
+      const r=Math.sqrt(Math.random())*limit,theta=Math.random()*Math.PI*2;
+      const x=CX+r*Math.cos(theta),y=CY+r*Math.sin(theta);
+      if(!positions.some(p=>Math.hypot(x-p.x,y-p.y)<minDist))positions.push({x,y,r});
+    }
+    if(positions.length===24)return positions;
+  }
+  // 24 separated points fit even the 296px cloth at a 320px viewport.
+  const angle=Math.random()*Math.PI*2,positions=[];
+  for(let row=0;row<6;row++)for(let col=0;col<6;col++){
+    const x=(col-2.5)*85,y=(row-2.5)*85,r=Math.hypot(x,y);
+    if(r<220)positions.push({x:CX+x*Math.cos(angle)-y*Math.sin(angle),y:CY+x*Math.sin(angle)+y*Math.cos(angle),r});
+  }
+  return shuffle(positions);
+}
+function updateBlotCore(){
+  const core=drawn.filter(c=>!c.isFaceDown).sort((a,b)=>a.pos.r-b.pos.r||a.id-b.id).slice(0,5);
+  const ids=new Set(core.map(c=>c.id));
+  drawn.forEach((c,i)=>{
+    c.isCore=ids.has(c.id);
+    const tile=document.querySelector(`.blot-tile[data-idx="${i}"]`);
+    if(tile){
+      tile.classList.toggle('blot-core',c.isCore);
+      tile.setAttribute('aria-label',c.isFaceDown?`Face-down rune ${i+1}. Turn over`:`${c.name}, ${c.isReversed?'merkstave':'upright'}${c.isCore?', Core':''}. Inspect`);
+    }
+  });
+  return core;
+}
+
+function getZoneLabel(r){
+  if(r<ZONE_1)return'The Center';
+  if(r<ZONE_2)return'The Surrounding';
+  return'The Horizon';
+}
+
+function renderBlotCast(){
+  const el=document.getElementById('rune-spread');
+  el.innerHTML='';el.className='';
+  el.style.cssText='display:block;padding:0;margin:0';
+
+  // Build cloth
+  const cloth=document.createElement('div');
+  cloth.id='blot-cloth';
+
+  // Zone rings
+  const ring1=document.createElement('div');ring1.className='blot-ring';
+  ring1.style.cssText=`width:${ZONE_1*2/CLOTH_SIZE*100}%;height:${ZONE_1*2/CLOTH_SIZE*100}%;border-color:rgba(180,120,40,0.25)`;
+  const ring2=document.createElement('div');ring2.className='blot-ring';
+  ring2.style.cssText=`width:${ZONE_2*2/CLOTH_SIZE*100}%;height:${ZONE_2*2/CLOTH_SIZE*100}%`;
+
+  // Zone labels (subtle, positioned just inside each ring)
+  const mkLbl=(text,top)=>{const l=document.createElement('span');l.className='blot-zone-lbl';l.textContent=text;l.style.top=top;return l};
+  cloth.appendChild(ring1);
+  cloth.appendChild(ring2);
+  cloth.appendChild(mkLbl('The Center', `${(CY-ZONE_1+6)/CLOTH_SIZE*100}%`));
+  cloth.appendChild(mkLbl('The Surrounding', `${(CY-ZONE_2+6)/CLOTH_SIZE*100}%`));
+  cloth.appendChild(mkLbl('The Horizon', `8px`));
+
+  // Generate positions, assign face-down, then determine core from face-up only
+  const positions=generateBlotPositions();
+  const separation=Math.min(...positions.flatMap((p,i)=>positions.slice(i+1).map(q=>Math.hypot(p.x-q.x,p.y-q.y))));
+  cloth.style.setProperty('--tile-size',`min(44px,${(separation-2)/CLOTH_SIZE*100}%)`);
+  drawn.forEach((card,i)=>{
+    card.pos={...positions[i]};
+    card.isFaceDown=Math.random()<0.35;
+  });
+
+  // Core = 5 closest face-up runes
+  updateBlotCore();
+
+  // Create rune tiles with flip structure
+  drawn.forEach((card,i)=>{
+    const pos=card.pos;
+    const tile=document.createElement('button');tile.type='button';tile.disabled=true;
+    tile.className='blot-tile'+(card.isCore?' blot-core':'')+(card.isFaceDown?' face-down':'');
+    tile.dataset.idx=i;
+    tile.style.left=`${pos.x/CLOTH_SIZE*100}%`;
+    tile.style.top=`${pos.y/CLOTH_SIZE*100}%`;
+    tile.style.transform='translate(-50%,-50%) scale(0.2)';
+    tile.style.transition='none';
+    tile.style.opacity='0';
+
+    // Inner flip wrapper
+    const inner=document.createElement('div');
+    inner.className='blot-tile-inner'+(card.isFaceDown?'':' flipped');
+
+    // Front face — shown when face-down
+    const front=document.createElement('div');
+    front.className='blot-tile-face';
+    const backSym=document.createElement('span');
+    backSym.textContent='᛭';
+    backSym.style.cssText='color:rgba(180,120,40,0.22);font-size:1rem';
+    front.appendChild(backSym);
+
+    // Back face — the rune, shown when flipped up
+    const back=document.createElement('div');
+    back.className='blot-tile-face blot-tile-back';
+    const sym=document.createElement('span');
+    sym.textContent=card.sym;
+    sym.style.color=card.isReversed?'#c44828':'#e8c060';
+    sym.style.display='inline-block';
+    sym.style.fontSize='1.3rem';
+    if(card.isReversed)sym.style.transform='rotate(180deg)';
+    back.appendChild(sym);
+
+    inner.appendChild(front);
+    inner.appendChild(back);
+    inner.setAttribute('aria-hidden','true');
+    tile.appendChild(inner);
+
+    tile.addEventListener('click',()=>{
+      if(card.isFaceDown){
+        card.isFaceDown=false;
+        tile.classList.remove('face-down');
+        inner.classList.add('flipped');
+        updateBlotCore();
+        if(readingShown)revealBlotReading(false);
+        showBlotRune(i);
+        document.getElementById('cast-status').textContent=readingShown?'Rune turned over. Reading updated.':'Rune turned over. Core updated.';
+      } else {
+        showBlotRune(i);
+      }
+    });
+
+    cloth.appendChild(tile);
+
+    // Scatter animation
+    later(()=>{
+      tile.style.transition=`transform 0.75s cubic-bezier(0.2,0.8,0.3,1),opacity 0.35s ease`;
+      tile.style.opacity='1';
+      tile.style.transform='translate(-50%,-50%)';
+    },80+i*45);
+  });
+
+  el.appendChild(cloth);
+  updateBlotCore();
+  const help=document.createElement('p');help.className='blot-help';help.textContent='Glowing runes form the Core: the five closest face-up runes. Select a rune to inspect it or turn it over. The reading updates as the cloth changes.';el.appendChild(help);
+  // Enable reveal after all tiles have landed
+  later(finishCast, 80+24*45+800);
+}
+
+function showBlotRune(idx){
+  // Deselect previous
+  document.querySelectorAll('.blot-tile.blot-selected').forEach(t=>t.classList.remove('blot-selected'));
+  const tile=document.querySelector(`.blot-tile[data-idx="${idx}"]`);
+  if(tile)tile.classList.add('blot-selected');
+
+  const card=drawn[idx];
+  const rev=card.isReversed;
+  const orientLabel=rev?'Merkstave':'Upright';
+  const orientColor=rev?'#c44828':'#b87d2a';
+  const desc=rev?(card.er||card.rv):(card.eu||card.up);
+  const zone=getZoneLabel(card.pos.r);
+
+  const el=document.getElementById('blot-desc');
+  el.innerHTML=`
+    <div class="bd-zone">${zone}</div>
+    <div class="bd-name">${card.sym}  ${card.name}</div>
+    <div class="bd-orient" style="color:${orientColor}">${orientLabel}</div>
+    <div class="bd-text">${desc}</div>`;
+  el.classList.remove('hidden');
+}
+
+// ─── BLÓT READING ─────────────────────────────────────────────────────────────
+function revealBlotReading(shouldScroll=true){
+  readingShown=true;showIntention();
+  document.getElementById('reveal-btn').disabled=true;
+
+  // Only read face-up runes
+  const faceUp=drawn.filter(c=>!c.isFaceDown);
+  const faceDown=drawn.filter(c=>c.isFaceDown);
+  const core=updateBlotCore();
+
+  // Aett analysis — face-up runes only
+  const aettStats=AETTIR.map(aett=>{
+    const aettFaceUp=faceUp.filter(c=>aett.ids.includes(c.id));
+    const coreCount=core.filter(c=>aett.ids.includes(c.id)).length;
+    const mkCount=aettFaceUp.filter(c=>c.isReversed).length;
+    const total=aettFaceUp.length;
+    return{...aett,coreCount,mkCount,total};
+  });
+  const dominant=aettStats.reduce((a,b)=>a.coreCount>b.coreCount?a:b);
+
+  // Balance — face-up runes only
+  const mkTotal=faceUp.filter(c=>c.isReversed).length;
+  const upTotal=faceUp.length-mkTotal;
+  const mkPct=faceUp.length>0?Math.round(mkTotal/faceUp.length*100):0;
+  const upPct=faceUp.length?100-mkPct:0;
+  const fdNote=faceDown.length>0?`<div style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.2rem;color:var(--ash);text-transform:uppercase;margin-bottom:.9rem;opacity:.7">${faceDown.length} rune${faceDown.length>1?'s':''} fell face-down and ${faceDown.length>1?'were':'was'} not read — click ${faceDown.length>1?'them':'it'} on the cloth to turn ${faceDown.length>1?'them':'it'} over</div>`:'';
+
+  const balanceDesc=(()=>{
+    if(faceUp.length===0)return"All runes fell face-down. The cast is silent — whatever you are asking, the answer is not yet meant to be seen.";
+    if(mkTotal===0)return"Every face-up rune landed upright — all channels are open, all forces moving in their proper direction. Trust what you see.";
+    if(mkPct<=17)return"The cast is predominantly clear, with minor shadows. Friction exists but it serves — small resistances that sharpen rather than obstruct.";
+    if(mkPct<=33)return"The cast holds real tension alongside its strengths. The shadow runes are not obstacles but information — they name what must be worked with, not worked around.";
+    if(mkPct<=50)return"Equal weight falls between the clear and the shadowed. The cast speaks of a moment at a crossroads — what is built and what is being challenged are roughly matched in force.";
+    if(mkPct<=66)return"Merkstave runes lead this cast. The shadow does not indicate failure — it indicates the depth of inner work being asked of you. What is required here is significant.";
+    if(mkPct<=83)return"The cast is heavily shadowed. This is not a reading about external obstacles — it is a reading about the internal territory that must be crossed. The runes are pointing inward.";
+    return"Nearly every face-up rune has turned. This is extraordinarily rare and should be read as a profound turning point — a dark night that is also the condition for deep transformation.";
+  })();
+
+  // Build HTML
+  const coreHTML=core.map((card,i)=>{
+    const rev=card.isReversed;
+    const desc=rev?(card.er||card.rv):(card.eu||card.up);
+    const oc=rev?'#c44828':'#b87d2a';
+    const isLast=i===4;
+    return`<div class="br-core-entry"${isLast?' style="border-bottom:none;margin-bottom:0;padding-bottom:0"':''}>
+      <div style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.88rem;color:#e8c060;margin-bottom:.18rem">${card.sym}  ${card.name}</div>
+      <div style="font-family:'Oracle Symbols','Cinzel',serif;font-size:.75rem;letter-spacing:.16rem;text-transform:uppercase;color:${oc};margin-bottom:.6rem">${rev?'Merkstave':'Upright'} · ${getZoneLabel(card.pos.r)}</div>
+      <div style="font-family:'Oracle Symbols',Georgia,serif;font-size:1rem;line-height:1.95;color:#f0e2c0">${desc}</div>
+    </div>`;
+  }).join('');
+
+  const aettHTML=aettStats.map(a=>{
+    const barW=a.total>0?Math.round(a.mkCount/a.total*100):0;
+    const coreTag=a.coreCount>0?`${a.coreCount} of ${core.length} core`:'none in core';
+    return`<div class="aett-row">
+      <div class="aett-lbl" style="color:${a.color}">${a.name}</div>
+      <div class="aett-track"><div class="aett-fill" style="width:${barW}%;background:${a.color}40;border:1px solid ${a.color}60"></div></div>
+      <div class="aett-meta" style="color:${a.color}">${a.mkCount}/${a.total} merkstave · ${coreTag}</div>
+    </div>`;
+  }).join('');
+
+  const leaders=aettStats.filter(a=>a.coreCount===dominant.coreCount);
+  const domDesc=!core.length?'No face-up runes are available to establish a Core.':
+    leaders.length===3?`All three aettir share the Core equally, with ${dominant.coreCount} rune${dominant.coreCount===1?'':'s'} each.`:
+    leaders.length===2?`${leaders.map(a=>a.name).join(' and ')} share the strongest presence in the Core, with ${dominant.coreCount} runes each. The third aett contributes ${core.length-2*dominant.coreCount}.`:
+    dominant.coreCount>=3?dominant.dom:
+    `${dominant.name} leads the Core with ${dominant.coreCount} of its ${core.length} runes, emphasizing ${dominant.theme}.`;
+  const shadowed=aettStats.filter(a=>a.mkCount>0);
+  const shadowLeaders=shadowed.filter(a=>shadowed.every(b=>a.mkCount*b.total>=b.mkCount*a.total));
+  const shadowDesc=!shadowLeaders.length?'No face-up runes carry merkstave shadow.':
+    shadowLeaders.length===1?shadowLeaders[0].shd:
+    `${shadowLeaders.map(a=>a.name).join(' and ')} share the highest merkstave proportion. Their themes are under equal relative pressure: ${shadowLeaders.map(a=>a.theme).join('; ')}.`;
+
+  const html=`
+    <div class="br-section">
+      <div class="br-title">᛭  The Core</div>
+      ${fdNote}
+      <div class="br-intro">The ${core.length} face-up rune${core.length!==1?'s':''} that fell closest to center — the heart of what the cast is saying.</div>
+      ${coreHTML}
+    </div>
+    <div class="br-section">
+      <div class="br-title">᛭  The Aettir</div>
+      <div class="br-intro">Each of the three families of runes carries a different thematic weight. The bars show merkstave proportion per aett; the tags show how many of each appear in your core five.</div>
+      ${aettHTML}
+      <div style="font-family:'Oracle Symbols',Georgia,serif;font-size:1rem;line-height:1.95;color:#f0e2c0;margin-top:.9rem">${domDesc}</div><div class="br-intro" style="margin-top:1rem">Shadow is compared by the proportion of face-up runes within each aett.</div><div class="cr-text">${shadowDesc}</div>
+    </div>
+    <div class="br-section">
+      <div class="br-title">᛭  The Balance</div>
+      <div class="balance-track">
+        <div class="bal-up" style="width:${upPct}%"></div>
+        <div class="bal-mk" style="width:${mkPct}%"></div>
+      </div>
+      <div class="bal-nums">${upTotal} upright · ${mkTotal} merkstave · ${faceDown.length} face-down · ${mkPct}% shadow</div>
+      <div style="font-family:'Oracle Symbols',Georgia,serif;font-size:1rem;line-height:1.95;color:#f0e2c0">${balanceDesc}</div>
+    </div>`;
+
+  const readEl=document.getElementById('reading-display');
+  document.getElementById('reading-lbl').textContent='᛭  The Reading';
+  document.getElementById('reading-content').innerHTML=html;
+  readEl.classList.remove('hidden');
+  document.getElementById('reset-btn').classList.remove('hidden');
+  if(shouldScroll)scrollReading();
+}
+
+// ─── STANDARD REVEAL ──────────────────────────────────────────────────────────
+function revealReading(){
+  readingShown=true;showIntention();
+  const cfg=CONFIGS[curSys];
+  const pos=cfg.positions[curSpread];
+  document.getElementById('reveal-btn').disabled=true;
+  const readEl=document.getElementById('reading-display');
+  document.getElementById('reading-lbl').textContent=`${cfg.tabSymOrns?.[0]||'᛭'}  The Reading`;
+  readEl.classList.remove('hidden');
+
+  const html=drawn.map((card,i)=>{
+    const rev=card.isReversed;
+    const desc=rev?(card.er||card.rv):(card.eu||card.up);
+    const nameColor=cfg.bright;
+    const orientColor=rev?'#c44828':cfg.accent;
+    const isLast=i===drawn.length-1;
+    const sub=curSys==='ogham'?`<div style="font-size:.75rem;color:#9a8a6a;font-style:italic;margin-bottom:.2rem">${card.tree}</div>`:curSys==='tarot'&&card.arcana==='minor'?`<div style="font-size:.75rem;color:${SUIT_COLS[card.suit]};font-family:'Oracle Symbols','Cinzel',serif;letter-spacing:.1rem;margin-bottom:.2rem;opacity:.8">${card.suit.charAt(0).toUpperCase()+card.suit.slice(1)}</div>`:'';
+    return`<div class="card-reading"${isLast?' style="margin-bottom:0;padding-bottom:0;border-bottom:none"':''}>
+      <div class="cr-pos">${pos[i]}</div>
+      <div class="cr-name" style="color:${nameColor}">${card.name}</div>
+      ${sub}
+      <div class="cr-orient" style="color:${orientColor}">${rev?(curSys==='runes'?'Merkstave':'Reversed'):'Upright'}</div>
+      <div class="cr-text">${desc}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('reading-content').innerHTML=html;
+  document.getElementById('reset-btn').classList.remove('hidden');
+  scrollReading();
+}
+
+function handleReveal(){
+  if(!castReady||!drawn.length||readingShown)return;
+  if(curSys==='runes'&&curSpread===24)revealBlotReading();
+  else revealReading();
+}
+
+// ─── RESET ────────────────────────────────────────────────────────────────────
+function resetAll(){
+  clearCast();
+  curSpread=null;drawn=[];
+  document.querySelectorAll('.spread-btn').forEach(b=>{b.setAttribute('aria-pressed','false');b.style.borderColor='';b.style.color='';b.style.background='';b.style.boxShadow=''});
+  const cb=document.getElementById('cast-btn');cb.disabled=true;cb.style.boxShadow='';
+  document.getElementById('reveal-btn').disabled=true;
+  document.getElementById('card-display').classList.add('hidden');
+  document.getElementById('reading-display').classList.add('hidden');
+  document.getElementById('reset-btn').classList.add('hidden');
+  document.getElementById('blot-desc').classList.add('hidden');
+  // Keep the intention available for another cast.
+  // Reset rune-spread div
+  const rs=document.getElementById('rune-spread');
+  rs.className='rune-spread';rs.style.cssText='';rs.innerHTML='';
+}
+
+selectSystem('runes');
+</script>
 </body>
 </html>
